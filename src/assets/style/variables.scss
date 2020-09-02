@@ -19,7 +19,7 @@ $xs: 576px;
 }
 .maxWidth {
   max-width: 90%;
-  margin: 0 auto;
+  margin: 0 auto !important;
   @include large-desktop() {
     max-width: $maxWidth;
   }

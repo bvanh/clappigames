@@ -1,3 +1,7 @@
-.hooper{
+@import "../../../assets/style/variables.scss";
+.frame-1 {
+  @extend .maxWidth;
+  .hooper {
     height: 100%;
+  }
 }

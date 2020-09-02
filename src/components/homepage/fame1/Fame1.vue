@@ -1,9 +1,18 @@
 <template>
-  <hooper :infiniteScroll="true" height="100%">
-    <slide><img :src="importImg('slide1.jpg')"/></slide>
-    <hooper-pagination slot="hooper-addons"></hooper-pagination>
-    <hooper-navigation slot="hooper-addons"></hooper-navigation>
-  </hooper>
+  <a-row class="frame-1">
+    <a-col :span="16">
+      <hooper :infiniteScroll="true" height="100%">
+        <slide>
+          <img :src="importImg('slide1.jpg')" width="100%"/>
+        </slide>
+        <hooper-pagination slot="hooper-addons"></hooper-pagination>
+        <hooper-navigation slot="hooper-addons"></hooper-navigation>
+      </hooper>
+    </a-col>
+    <a-col :span="8">
+
+    </a-col>
+  </a-row>
 </template>
 
 <script>
@@ -18,12 +27,7 @@ import "hooper/dist/hooper.css";
 export default {
   name: "Fame1",
   data() {
-    return {
-      slickOptions: {
-        slidesToShow: 3,
-        // Any other options that can be got from plugin documentation
-      },
-    };
+    return {};
   },
   methods: {
     importImg(url) {
