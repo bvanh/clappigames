@@ -1,0 +1,126 @@
+@import "../../../assets/style/variables.scss";
+$bg_nav2: #2b3f96;
+$menu-color: #ffc50e;
+.nav-2-container {
+  @extend .maxWidth;
+  position: relative;
+  align-items: center;
+  img {
+    padding: 20px 0;
+  }
+  .logo{
+    @include mobile-xs(){
+        max-width: 50%;
+    }
+  }
+  .icon-menu {
+    font-size: 36px;
+    color: white;
+    display: none;
+    @include mobile {
+      display: block;
+    }
+  }
+  .menu {
+    @include mobile {
+      display: none;
+    }
+    .router-link-exact-active {
+      border-bottom-color: $menu-color;
+    }
+    a {
+      @extend .div-static;
+      font-size: 20px;
+      font-weight: bold;
+      color: $menu-color;
+      font-family: "Roboto Condensed", sans-serif;
+      padding: 20px 0 15px 0;
+      border-bottom: 5px solid $bg_nav2;
+      margin: 0 1rem;
+      &:hover {
+        border-bottom-color: $menu-color;
+      }
+    }
+    .btn-pay {
+      height: 45px;
+      border-radius: 5px;
+      margin: 20px 0;
+      border: 0;
+      background: linear-gradient(
+        360deg,
+        rgba(0, 176, 255, 0.9875261971120084) 50%,
+        rgba(0, 193, 255, 1) 50%
+      );
+      padding: 0 1rem;
+      color: white;
+      img {
+        padding-left: 8px;
+      }
+    }
+  }
+  .menu-mobile,
+  .menu-mobile-active {
+    @extend .div-static;
+    @extend .menu;
+    display: none;
+    position: fixed;
+    height: 100vh;
+    width: 300px;
+    background: $bg_nav2;
+    left: -20rem;
+    top: 0;
+    transition-duration: 500ms;
+    @include mobile {
+      display: block;
+    }
+    .close-menu {
+      font-size: 24px;
+      position: relative;
+      margin: 0.8rem 0 0 0;
+      right: -8rem;
+      color: wheat;
+    }
+    a {
+      border: 0;
+      position: relative;
+      &:after {
+        content: "";
+        border-bottom: solid 5px $menu-color;
+        position: absolute;
+        bottom: 0;
+        opacity: 0;
+        width: 0;
+        height: 3px;
+        -webkit-transition: all 1s;
+        transition: all 1s;
+      }
+    }
+    a {
+      &:hover:after {
+        opacity: 1;
+        width: 100%;
+      }
+    }
+    .btn-pay {
+      margin: 1rem;
+      &::after {
+        border: 0;
+      }
+    }
+  }
+  .menu-mobile-active {
+    left: 0;
+    z-index: 999;
+    transition-duration: 500ms;
+  }
+  .menu-mask {
+    width: 100%;
+    height: 100vh;
+    background: #00000052;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    display: block !important;
+  }
+}

@@ -1,0 +1,44 @@
+@import "../../../assets/style/variables.scss";
+$bg_nav2: #2b3f96;
+$menu-color: #ffc50e;
+.icon-nav-1 {
+  font-size: 20px;
+  margin-right: 5px;
+  color: white;
+}
+.header {
+  .nav-1 {
+    background: $nav-1;
+    height: 35px;
+    .nav-1-container {
+      @extend .maxWidth;
+      height: 100%;
+      padding: 0.5rem 0;
+      .ant-col {
+        @extend .div-static;
+        color: white;
+        .icon-phone {
+          @extend .icon-nav-1;
+          transform: rotate(90deg);
+        }
+        .icon-logout {
+          @extend .icon-nav-1;
+          transform: rotate(180deg);
+        }
+        .btn-log {
+          color: $white;
+          text-decoration: none;
+          padding: 0 4px;
+        }
+      }
+    }
+    img {
+      max-width: 20px;
+      // padding: 0 10px;
+    }
+  }
+  .nav-2 {
+    background: $bg_nav2;
+    position: relative;
+  }
+}

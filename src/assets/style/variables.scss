@@ -1,0 +1,35 @@
+$maxWidth: 1440px;
+$large-deskop: 1600px;
+$mobile: 992px;
+$xs: 576px;
+@mixin large-desktop {
+  @media (min-width:#{$large-deskop}) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width:#{$mobile}) {
+    @content;
+  }
+}
+@mixin mobile-xs {
+  @media (max-width:#{$xs}) {
+    @content;
+  }
+}
+.maxWidth {
+  max-width: 90%;
+  margin: 0 auto;
+  @include large-desktop() {
+    max-width: $maxWidth;
+  }
+}
+// color
+$white: white;
+$nav-1: #1c2965;
+//
+.div-static {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
