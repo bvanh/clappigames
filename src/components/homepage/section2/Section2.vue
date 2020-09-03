@@ -3,58 +3,53 @@
     <a-col :span="16" class="list-game">
       <ListGame :games="games" />
       <ListGameByType :games="games" />
+      <div class="banner">
+        <img :src="importImg('banner.jpg')" width="100%" />
+      </div>
+      <News />
     </a-col>
     <a-col :span="8" class="category" style="padding:0">
       <Category :games="games" />
+      <div class="banner">
+        <img :src="importImg('banner2.jpg')" width="100%" />
+      </div>
+      <div
+        class="fb-page"
+        data-href="https://www.facebook.com/3QZVN/"
+        data-width="700"
+        data-height='300'
+        data-hide-cover="false"
+        data-show-facepile="true"
+      ></div>
     </a-col>
   </a-row>
 </template>
 <script>
 import ListGame from "./section-left/ListGame";
 import ListGameByType from "./section-left/ListGameByType";
+import News from "./section-left/News";
 import Category from "./section-right/Category";
+import { games } from "../../../ultils/valDefault";
+import { importImg } from "../../../ultils/importImg";
 export default {
   name: "Fame2",
   data() {
     return {
-      games: [
-        {
-          id: 1,
-          name: "Liên Quân Ma Thuật",
-          type: "Game mobile",
-          category: "CHIẾN THUẬT",
-          view: 1000,
-          img: "img2.jpg",
-          icon: "icon_game.png",
-        },
-        {
-          id: 2,
-          name: "3Q Phản Công",
-          type: "Game mobile",
-          category: "NHẬP VAI",
-          view: 10400,
-          img: "img2.jpg",
-          icon: "icon_game.png",
-        },
-        {
-          id: 3,
-          name: "Comming soon",
-          type: "Game mobile",
-          category: "GIẢI TRÍ",
-          view: 1010,
-          img: "img2.jpg",
-          icon: "icon_game.png",
-        },
-      ],
+      games: games,
     };
+  },
+  methods: {
+    importImg(url) {
+      return importImg[url];
+    },
   },
   components: {
     ListGame,
     ListGameByType,
+    News,
     Category,
   },
 };
 </script>
 
-<style src='./section-left/style.scss' lang='scss' scoped>
-</style>
+<style src="./section-left/style.scss" lang="scss" scoped></style>

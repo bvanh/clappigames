@@ -5,7 +5,9 @@ function importAll(r) {
   });
   return images;
 }
-
+const importImg = importAll(
+  require.context("../assets", false, /\.(png|jpe?g|svg)$/)
+);
 const importImgHeader = importAll(
   require.context("../assets/header", false, /\.(png|jpe?g|svg)$/)
 );
@@ -18,7 +20,10 @@ const importImgIcon = importAll(
 const importImgGames = importAll(
   require.context("../assets/games", false, /\.(png|jpe?g|svg)$/)
 );
-// const importImgFooter = importAll(
-//   require.context("../assets/footer", false, /\.(png|jpe?g|svg)$/)
-// )
-export { importImgHeader, importImgSlider, importImgIcon, importImgGames };
+export {
+  importImg,
+  importImgHeader,
+  importImgSlider,
+  importImgIcon,
+  importImgGames,
+};

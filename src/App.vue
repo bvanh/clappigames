@@ -1,9 +1,19 @@
 <template>
   <div id="app">
     <router-view />
+    <Footer />
   </div>
 </template>
 
+<script>
+import Footer from "./components/footer/Footer";
+export default {
+  name: "App",
+  components: {
+    Footer,
+  },
+};
+</script>
 <style lang='scss'>
 @import url("https://fonts.googleapis.com/css2?family=Roboto+Condensed:ital,wght@0,300;0,700;1,400;1,700&display=swap");
 #app {
@@ -12,7 +22,8 @@
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   color: #2c3e50;
-  background: url(../src/assets/background.png) no-repeat ;
+  background: url(../src/assets/background.png) no-repeat;
+  background-size: cover;
   p {
     margin: 0;
     color: white;
