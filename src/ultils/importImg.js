@@ -12,13 +12,13 @@ const importImgHeader = importAll(
 const importImgSlider = importAll(
   require.context("../assets/slider", false, /\.(png|jpe?g|svg)$/)
 );
-// const importImgBestSeller = importAll(
-//   require.context("../assets/bestseller", false, /\.(png|jpe?g|svg)$/)
-// )
-// const importImgCategory = importAll(
-//   require.context("../assets/category", false, /\.(png|jpe?g|svg)$/)
-// )
+const importImgIcon = importAll(
+  require.context("../assets/icon", false, /\.(png|jpe?g|svg)$/)
+);
+const importImgGames = importAll(
+  require.context("../assets/games", false, /\.(png|jpe?g|svg)$/)
+);
 // const importImgFooter = importAll(
 //   require.context("../assets/footer", false, /\.(png|jpe?g|svg)$/)
 // )
-export { importImgHeader, importImgSlider };
+export { importImgHeader, importImgSlider, importImgIcon, importImgGames };

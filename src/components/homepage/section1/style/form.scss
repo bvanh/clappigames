@@ -1,0 +1,74 @@
+@import "../../../../assets/style/variables.scss";
+.form-container {
+  background: white;
+  border: 1px solid #f1f1f1;
+  border-radius: 6px;
+  padding-top: 1.5rem;
+  height: 350px;
+  position: relative;
+  @include mobile {
+    display: none !important;
+  }
+  .form {
+    .ant-input-prefix {
+      font-size: 20px !important;
+    }
+    input {
+      height: 50px;
+      border-radius: 0;
+      border: solid 1px #e5e5e5;
+      background-color: #ffffff;
+      padding-left: 40px !important;
+    }
+    .form-control {
+      span {
+        display: flex;
+        flex-direction: column;
+      }
+      .login-form-forgot {
+        height: 30px;
+        align-items: center;
+        display: flex;
+      }
+      .login-form-button {
+        font-weight: bold;
+        font-size: 16px;
+        background-color: $btn-color;
+        border-color: $btn-color;
+        color: $nav-1;
+        height: 50px;
+      }
+    }
+  }
+  hr {
+    position: absolute;
+    z-index: 9;
+    width: 89%;
+    bottom: 40px;
+    border-color: #f7f7f780;
+  }
+  .text-or {
+    color: #9a9494c2 !important;
+    position: absolute;
+    bottom: 38px;
+    z-index: 9;
+    left: 44%;
+    background: white;
+    width: 50px;
+  }
+  .icon-social {
+    @extend .div-static;
+    justify-content: center;
+    .icon-social-1 {
+      font-size: 25px;
+      margin: 0px 5px;
+      padding-bottom: 3px;
+      color:#316a9a;
+    }
+    .icon-social-2 {
+      font-size: 30px;
+      margin: 0 5px;
+      color:#f34a38;
+    }
+  }
+}

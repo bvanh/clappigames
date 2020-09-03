@@ -1,7 +1,8 @@
-$maxWidth: 1440px;
-$large-deskop: 1600px;
+$maxWidth: 1200px;
+$large-deskop: 1400px;
 $mobile: 992px;
 $xs: 576px;
+$radius: 6px;
 @mixin large-desktop {
   @media (min-width:#{$large-deskop}) {
     @content;
@@ -27,9 +28,20 @@ $xs: 576px;
 // color
 $white: white;
 $nav-1: #1c2965;
+$btn-color: #ffc50e;
+$game-footer:#8f8f8f;
+//
+// font
+.font-static {
+  font-family: "Roboto Condensed", sans-serif;
+}
 //
 .div-static {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+.borderRadius {
+  border-radius: 6px;
+  box-shadow: 0px 0px 2px 0px grey;
 }

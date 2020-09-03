@@ -1,6 +1,5 @@
 @import "../../../assets/style/variables.scss";
 $bg_nav2: #2b3f96;
-$menu-color: #ffc50e;
 .nav-2-container {
   @extend .maxWidth;
   position: relative;
@@ -26,19 +25,19 @@ $menu-color: #ffc50e;
       display: none;
     }
     .router-link-exact-active {
-      border-bottom-color: $menu-color;
+      border-bottom-color: $btn-color;
     }
     a {
       @extend .div-static;
       font-size: 20px;
       font-weight: bold;
-      color: $menu-color;
+      color: $btn-color;
       font-family: "Roboto Condensed", sans-serif;
       padding: 20px 0 15px 0;
       border-bottom: 5px solid $bg_nav2;
       margin: 0 1rem;
       &:hover {
-        border-bottom-color: $menu-color;
+        border-bottom-color: $btn-color;
       }
     }
     .btn-pay {
@@ -69,6 +68,7 @@ $menu-color: #ffc50e;
     background: $bg_nav2;
     left: -20rem;
     top: 0;
+    z-index: 999;
     transition-duration: 500ms;
     @include mobile {
       display: block;
@@ -85,7 +85,7 @@ $menu-color: #ffc50e;
       position: relative;
       &:after {
         content: "";
-        border-bottom: solid 5px $menu-color;
+        border-bottom: solid 5px $btn-color;
         position: absolute;
         bottom: 0;
         opacity: 0;

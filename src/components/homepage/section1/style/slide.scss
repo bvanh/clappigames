@@ -1,0 +1,68 @@
+@import "../../../../assets/style/variables.scss";
+.frame-1 {
+  @extend .maxWidth;
+  margin: 2rem auto !important;
+  @include mobile(){
+    margin: 1rem auto !important;
+  }
+  .slide {
+    padding-left: 0 !important;
+    position: relative;
+    height: 350px;
+    @include mobile {
+      height: initial;
+      padding-right: 0 !important;
+    }
+    .btn-control-prev,
+    .btn-control-next {
+      width: 5%;
+      height: 20%;
+      border-radius: 5px;
+      background-color: #0000006e;
+      border: 0;
+      color: white;
+      font-size: 150%;
+      position: absolute;
+      top: 35%;
+      right: 2rem;
+      z-index: 1;
+      cursor: pointer;
+      @include mobile-xs{
+        width: 8%;
+        height: 30%;
+        font-size: 100%;
+      }
+
+    }
+    .btn-control-prev {
+      left: 1rem;
+    }
+    .hooper {
+      height: 100%;
+      .hooper-list {
+        @extend .borderRadius;
+        .hooper-indicator {
+          width: 40px;
+          height: 5px;
+          border-radius: 2.5px;
+          background-color: #fffefc78;
+        }
+        .hooper-slide{
+          display: flex;
+          justify-content: center;
+          overflow: hidden;
+          .img-slide{
+            // width: 100%;
+            height: 100%;
+            @include mobile{
+              width: 100%;
+            }
+          }
+        }
+        .is-active{
+          background-color:$btn-color;
+        }
+      }
+    }
+  }
+}
