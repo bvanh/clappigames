@@ -3,14 +3,12 @@
     <a-col :span="24" class="section-left" :lg="{span:16}">
       <ListGame :games="getGames" :span="span" />
       <ListGameByType :games="getGames" />
-      <Banner />
+      <Banner :bn="bn1"/>
       <News />
     </a-col>
     <a-col :span="8" class="section-right">
-      <Category :games="games" />
-      <div class="banner">
-        <img :src="importImg('banner2.jpg')" width="100%" />
-      </div>
+      <Category :games="getGames" />
+      <Banner :bn="bn2"/>
       <div
         class="fb-page"
         data-href="https://www.facebook.com/3QZVN/"
@@ -33,6 +31,8 @@ export default {
   data() {
     return {
       span: 8,
+      bn2: "banner2.jpg",
+      bn1: "banner.jpg",
     };
   },
   computed: {
