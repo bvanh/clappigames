@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
+import Games from '../views/Games.vue'
 
 Vue.use(VueRouter)
 
@@ -11,6 +12,11 @@ Vue.use(VueRouter)
     component: Home
   },
   {
+    path: '/games',
+    name: 'Games',
+    component: Games
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
@@ -19,7 +25,6 @@ Vue.use(VueRouter)
     component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
   }
 ]
-
 const router = new VueRouter({
   mode: 'history',
   base: process.env.BASE_URL,

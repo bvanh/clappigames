@@ -1,14 +1,12 @@
 <template>
   <a-row class="frame-1" :gutter="40">
-    <a-col :span="16" class="list-game">
-      <ListGame :games="games" />
-      <ListGameByType :games="games" />
-      <div class="banner">
-        <img :src="importImg('banner.jpg')" width="100%" />
-      </div>
+    <a-col :span="24" class="section-left" :lg="{span:16}">
+      <ListGame :games="getGames" :span="span" />
+      <ListGameByType :games="getGames" />
+      <Banner />
       <News />
     </a-col>
-    <a-col :span="8" class="category" style="padding:0">
+    <a-col :span="8" class="section-right">
       <Category :games="games" />
       <div class="banner">
         <img :src="importImg('banner2.jpg')" width="100%" />
@@ -17,7 +15,7 @@
         class="fb-page"
         data-href="https://www.facebook.com/3QZVN/"
         data-width="700"
-        data-height='300'
+        data-height="300"
         data-hide-cover="false"
         data-show-facepile="true"
       ></div>
@@ -29,23 +27,23 @@ import ListGame from "./section-left/ListGame";
 import ListGameByType from "./section-left/ListGameByType";
 import News from "./section-left/News";
 import Category from "./section-right/Category";
-import { games } from "../../../ultils/valDefault";
-import { importImg } from "../../../ultils/importImg";
+import Banner from "./section-left/Banner";
 export default {
   name: "Fame2",
   data() {
     return {
-      games: games,
+      span: 8,
     };
   },
-  methods: {
-    importImg(url) {
-      return importImg[url];
+  computed: {
+    getGames() {
+      return this.$store.getters.games;
     },
   },
   components: {
     ListGame,
     ListGameByType,
+    Banner,
     News,
     Category,
   },

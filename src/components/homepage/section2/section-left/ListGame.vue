@@ -6,18 +6,24 @@
         GAME MOBILE
       </a>
       <a class="title-see-all">
-        Xem tất cả
+        Xem thêm
         <a-icon type="forward" />
       </a>
     </div>
-    <a-row :gutter="32">
-      <a-col :span="8" v-for="game of games" :key="game.id" class="game-info">
+    <a-row :gutter="32" type="flex">
+      <a-col
+        :sm="{span:span}"
+        :xs="{span:12}"
+        v-for="game of games"
+        :key="game.id"
+        class="game-info"
+      >
         <img :src="importImgGame(game.img)" width="100%" class="game-thumbnail" />
         <h3>{{game.name}}</h3>
         <div>
           {{game.type}}
           <span>
-            <a-icon type="eye" style="margin-right:5px" />
+            <img :src="importIcon('icon_people.png')" />
             {{game.view}}
           </span>
         </div>
@@ -31,6 +37,7 @@ export default {
   name: "ListGame",
   props: {
     games: Array,
+    span: Number,
   },
   data() {
     return {};

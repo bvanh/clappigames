@@ -31,6 +31,7 @@
         width: 8%;
         height: 30%;
         font-size: 100%;
+        right: 1rem;
       }
 
     }
@@ -46,6 +47,9 @@
           height: 5px;
           border-radius: 2.5px;
           background-color: #fffefc78;
+          @include mobile-xs{
+            width: 24px;
+          }
         }
         .hooper-slide{
           display: flex;

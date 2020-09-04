@@ -3,7 +3,7 @@
     <div class="title">
       <div>
         <a
-          :class="`title-game ${menu.id===isActiveMenu?'menu-active':''}`"
+          :class="`title-game ${menu.id===isActiveMenu?'menu-active':''} title-${menu.subClass}`"
           v-for="menu of menus"
           :key="menu.id"
           @click="setActiveMenu(menu.id)"
@@ -15,12 +15,12 @@
         </a>
       </div>
       <a class="title-see-all">
-        Xem tất cả
+        Xem thêm
         <a-icon type="forward" />
       </a>
     </div>
     <a-row type="flex" :gutter="24" class="li-news">
-      <a-col :span="12" v-for="news of listNews" :key="news.id" class="news">
+      <a-col :sm="{span:12}" :xs="{span:24}" v-for="news of listNews" :key="news.id" class="news">
         <a-row :gutter="12">
           <a-col :span="12" class="thumbnail" :style="{backgroundImage:getBackgroundUrl(news.img)}"></a-col>
           <a-col :span="12" class="news-info">

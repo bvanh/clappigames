@@ -1,8 +1,11 @@
 @import "../../../../assets/style/variables";
 @import "../section-left/style";
-.category {
+.section-right {
   padding: 0 !important;
-  @extend .list-game;
+  @include mobile() {
+    display: none !important;
+  }
+  @extend .section-left;
   .title {
     justify-content: space-around !important;
   }

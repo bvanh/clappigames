@@ -7,7 +7,7 @@
 <script>
 // @ is an alias to /src
 import Section1 from "../components/homepage/section1/Section1";
-import Section2 from "../components/homepage/section2/Section2";
+import Section2 from "../components/game/Section2";
 export default {
   name: "Home",
   components: {

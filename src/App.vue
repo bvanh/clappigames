@@ -1,5 +1,6 @@
 <template>
   <div id="app">
+    <Header />
     <router-view />
     <Footer />
   </div>
@@ -7,9 +8,11 @@
 
 <script>
 import Footer from "./components/footer/Footer";
+import Header from "./components/header/Header";
 export default {
   name: "App",
   components: {
+    Header,
     Footer,
   },
 };
@@ -24,6 +27,7 @@ export default {
   color: #2c3e50;
   background: url(../src/assets/background.png) no-repeat;
   background-size: cover;
+  background-color: #ebebeb;
   p {
     margin: 0;
     color: white;
