@@ -1,7 +1,10 @@
 @import "../../assets/style/variables.scss";
 .footer {
-  padding: 1rem 0;
+  padding: 1rem 0 0 0;
   background: white;
+  // position: fixed;
+  // width: 100%;
+  // bottom: 0;
   p {
     color: #424242 !important;
   }
@@ -9,7 +12,7 @@
     @extend .maxWidth;
     .footer-info {
       text-align: left;
-      @include mobile{
+      @include mobile {
         margin-bottom: 1rem;
       }
     }
@@ -24,11 +27,11 @@
         margin: 1rem 6px;
         color: #595a68;
       }
-      .fb{
-        color:$icon-fb;
+      .fb {
+        color: $icon-fb;
       }
-      .gg{
-        color:$icon-gg;
+      .gg {
+        color: $icon-gg;
       }
     }
   }
@@ -36,10 +39,10 @@
     background: #383838;
     border-top: 2px solid $btn-color;
     color: white;
-    padding: 1rem 0;
+    padding: 1rem 0 0;
     div {
       @extend .maxWidth;
-      @include mobile-xs{
+      @include mobile-xs {
         max-width: 95% !important;
       }
       // div{
@@ -57,16 +60,16 @@
             color: white;
             margin-right: 5px;
             padding-right: 5px;
-            @include mobile-xs{
+            @include mobile-xs {
               font-size: 12px;
             }
           }
         }
       }
     }
-    .coppy-right{
-      @include mobile-xs{
-        width: 95% ;
+    .coppy-right {
+      @include mobile-xs {
+        width: 95%;
         text-align: center !important;
       }
     }

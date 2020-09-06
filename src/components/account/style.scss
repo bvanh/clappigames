@@ -1,0 +1,188 @@
+@import "../../assets/style/variables.scss";
+.account {
+  @extend .maxWidth;
+  margin: 2rem auto !important;
+  .controls {
+    padding: 2rem;
+    border-radius: $radius;
+    background: white;
+    .username {
+      text-align: left;
+      padding-left: 1rem;
+      h3 {
+        @extend .font-static;
+        font-size: 18px;
+        font-weight: bold;
+        color: $mn-active;
+        margin-bottom: 5px;
+      }
+    }
+    .menu,
+    .menu-active {
+      @extend .div-static;
+      justify-content: right;
+      font-size: 1rem;
+      padding: 1rem 0;
+      border-bottom: 1px solid $border-bt;
+      cursor: pointer;
+      i {
+        margin-right: 10px;
+      }
+    }
+    .menu-active {
+      color: $mn-active;
+    }
+  }
+  .user-detail {
+    padding: 2rem;
+    background: white;
+    border-radius: $radius;
+    .title {
+      @extend .div-static;
+      @extend .font-static;
+      justify-content: right;
+      align-items: baseline;
+      font-size: 20px;
+      color: $mn-active;
+      font-weight: bold;
+      padding-bottom: 1rem;
+      margin-bottom: 1rem;
+      border-bottom: 1px solid $border-bt;
+      i {
+        font-size: 25px;
+        margin-right: 11px;
+      }
+    }
+    .username {
+      @extend .div-static;
+      justify-content: left;
+      margin-bottom: 1rem;
+      img {
+        width: 30px;
+        margin-right: 9px;
+      }
+      h3 {
+        @extend .font-static;
+        width: 33%;
+        text-align: left;
+        color: back;
+        font-weight: bold;
+      }
+      span{
+        width:100%;
+        text-align: left;
+      }
+    }
+    .detail {
+      @extend .div-static;
+      justify-content: end;
+      margin: 0.5rem 0 1rem 2.4rem;
+      i {
+        color: red;
+      }
+      h3 {
+        width: 25%;
+        text-align: left;
+        color: $game-footer;
+      }
+      .select-birth {
+        width: 100%;
+      }
+      div {
+        width: 100%;
+        text-align: left;
+      }
+      label {
+        display: flex;
+        align-items: center;
+        .btn-upload {
+          @extend .div-static;
+          justify-content: space-around;
+          width: 6rem;
+          background: #1a80b6;
+          height: 2.1rem;
+          padding: 0.7rem;
+          border-radius: 20px;
+          color: white;
+        }
+      }
+    }
+    .detail-content{
+      @extend .detail;
+      align-items: flex-start;
+      span{
+        width: 75%;
+        text-align: justify;
+      }
+    }
+    .id-card {
+      div {
+        @extend .div-static;
+        h3 {
+          width: 20%;
+          margin-left: 2% !important;
+          overflow: hidden !important;
+          text-overflow: ellipsis;
+          display: -webkit-box;
+          -webkit-box-orient: vertical;
+          -webkit-line-clamp: 1;
+        }
+      }
+    }
+    .btn-submit {
+      @extend .font-static;
+      font-weight: bold;
+      background: $btn-color;
+      border-radius: 16px;
+      border: 0;
+      height: 2rem;
+      width: 7rem;
+    }
+    .btn-cancel {
+      @extend .btn-submit;
+      color: white;
+      background: $mn-active;
+      margin: 1rem;
+    }
+    .title-feedback {
+      justify-content: space-between !important;
+      .btn-feedback {
+        background: $btn-color;
+        border-radius: 25px;
+        font-size: 1rem;
+        height: 2.5rem;
+        font-weight: bold;
+        width: 10rem;
+      }
+      .btn-feedback-back {
+        font-size: 20px;
+        color: #2828288a;
+        font-weight: bold;
+        border: 0;
+      }
+    }
+    .detail-feedback {
+      @extend .div-static;
+      align-items: end;
+      padding-bottom: 1.3rem;
+      border-bottom: 1px solid $border-bt;
+      i {
+        font-size: 2rem;
+        margin-top: 6px;
+      }
+      div {
+        width: 75%;
+        @extend .div-static;
+        flex-direction: column;
+        align-items: end;
+        span {
+          color: $game-footer;
+        }
+        h2 {
+          font-size: 20px;
+          cursor: pointer;
+        }
+      }
+    }
+  }
+}

@@ -9,6 +9,9 @@
   @include mobile {
     display: none !important;
   }
+  .-title {
+    display: none;
+  }
   .form {
     .ant-input-prefix {
       font-size: 20px !important;
@@ -59,16 +62,55 @@
   .icon-social {
     @extend .div-static;
     justify-content: center;
-    .icon-social-1 {
+    .icon-social-fb {
       font-size: 25px;
       margin: 0px 5px;
       padding-bottom: 3px;
       color: $icon-fb;
     }
-    .icon-social-2 {
+    .icon-social-gg {
       font-size: 30px;
       margin: 0 5px;
       color: $icon-gg;
+    }
+  }
+}
+.form-login {
+  @include mobile {
+    display: block !important;
+  }
+  height: auto !important;
+  .form-login-title {
+    font-size: 20px;
+    font-weight: bold;
+  }
+  hr {
+    bottom: 45px;
+  }
+  .text-or {
+    bottom: 42px;
+  }
+  .icon-social {
+    .icon-social-fb {
+      font-size: 35px;
+    }
+    .icon-social-gg {
+      font-size: 40px;
+    }
+  }
+  .icon-phone {
+    transform: rotate(90deg);
+  }
+  .user-info {
+    .info {
+      text-align: left;
+      padding-left: 1rem;
+      h3{
+        @extend .font-static;
+        font-size: 20px;
+        font-weight: bold;
+        color:$mn-active;
+      }
     }
   }
 }

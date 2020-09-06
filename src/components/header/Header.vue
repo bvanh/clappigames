@@ -8,8 +8,8 @@
         </a-col>
         <a-col>
           <a-icon type="import" class="icon-logout" />
-          <a class="btn-log">Đăng nhập</a>|
-          <a class="btn-log">Đăng ký</a>
+          <router-link to='/login' class="btn-log">Đăng nhập</router-link>|
+          <router-link to='/register' class="btn-log">Đăng ký</router-link>
         </a-col>
       </a-row>
     </a-row>

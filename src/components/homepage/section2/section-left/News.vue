@@ -1,5 +1,5 @@
 <template>
-  <div class="news-container">
+  <div :class="`news-container ${isPage}`">
     <div class="title">
       <div>
         <a
@@ -14,17 +14,25 @@
           <img :src="importIcon(menu.icon2)" class="dots" />
         </a>
       </div>
-      <a class="title-see-all">
+      <router-link to="/news" class="title-see-all">
         Xem thêm
         <a-icon type="forward" />
-      </a>
+      </router-link>
     </div>
     <a-row type="flex" :gutter="24" class="li-news">
-      <a-col :sm="{span:12}" :xs="{span:24}" v-for="news of listNews" :key="news.id" class="news">
+      <a-col
+        :sm="{span:spanNews}"
+        :xs="{span:24}"
+        v-for="news of listNews"
+        :key="news.id"
+        class="news"
+      >
         <a-row :gutter="12">
           <a-col :span="12" class="thumbnail" :style="{backgroundImage:getBackgroundUrl(news.img)}"></a-col>
           <a-col :span="12" class="news-info">
-            <h4>{{news.title}}</h4>
+            <h4>
+              <router-link :to="`/news/detail/${news.id}`">{{news.title}}</router-link>
+            </h4>
             <div class="news-footer">
               <a-icon type="clock-circle" />
               <span>{{news.created_at}}</span>
@@ -55,6 +63,8 @@ export default {
   name: "ListGame",
   props: {
     games: Array,
+    spanNews: Number,
+    isPage: String,
   },
   data() {
     return {

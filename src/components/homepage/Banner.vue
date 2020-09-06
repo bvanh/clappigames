@@ -5,7 +5,7 @@
 </template>
 
 <script>
-import { importImg } from "../../../../ultils/importImg";
+import { importImg } from "../../ultils/importImg";
 export default {
   props: {
     bn: String,

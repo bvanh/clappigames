@@ -1,0 +1,81 @@
+@import "../../assets/style/variables.scss";
+
+.game-detail {
+  .menu {
+    background: white;
+    div {
+      @extend .maxWidth;
+      @extend .div-static;
+      justify-content: left;
+      padding: 10px 0;
+      span {
+        position: relative;
+        width: 9rem;
+        img {
+          position: absolute;
+          bottom: 0;
+          left: 0;
+        }
+        h3 {
+          @extend .font-static;
+          position: absolute;
+          top: -5.5rem;
+          left: 7.5rem;
+          color: white;
+          width: 200%;
+          font-size: 2.2rem;
+          font-weight: bold;
+        }
+      }
+      a {
+        @extend .font-static;
+        font-size: 1.2rem;
+        font-weight: bold;
+        color: black;
+        margin: 0 11px;
+      }
+      img {
+        padding: 0 0.5rem;
+      }
+    }
+  }
+  .frame-1 {
+    .video {
+      div {
+        border-radius: $radius;
+        height: 350px;
+      }
+    }
+  }
+  .section2 {
+    @extend .maxWidth;
+    // padding: 1rem;
+    .section-left {
+      .title {
+        @extend .div-static;
+        padding: 1rem;
+        border-bottom: 1px solid #e9e9e9;
+        background: white;
+        .title-game {
+          @extend .font-static;
+          @extend .div-static;
+          font-size: 20px;
+          font-weight: bold;
+          color: $mn-active;
+          @include mobile-xs() {
+          }
+          img {
+            margin-right: 10px;
+          }
+        }
+      }
+      .content-intro-game {
+        background: white;
+        padding: 1rem;
+      }
+      p {
+        color: black !important;
+      }
+    }
+  }
+}

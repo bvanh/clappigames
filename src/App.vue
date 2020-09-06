@@ -2,6 +2,7 @@
   <div id="app">
     <Header />
     <router-view />
+    <vue-scroll-to-top text="^" :visibleY="250" :duration="300"></vue-scroll-to-top>
     <Footer />
   </div>
 </template>
@@ -9,11 +10,13 @@
 <script>
 import Footer from "./components/footer/Footer";
 import Header from "./components/header/Header";
+import scrollUp from "vue-simple-scroll-up";
 export default {
   name: "App",
   components: {
     Header,
     Footer,
+    "vue-scroll-to-top": scrollUp,
   },
 };
 </script>
@@ -26,11 +29,14 @@ export default {
   text-align: center;
   color: #2c3e50;
   background: url(../src/assets/background.png) no-repeat;
-  background-size: cover;
+  background-size: auto;
   background-color: #ebebeb;
   p {
     margin: 0;
     color: white;
+  }
+  h1,h2,h3,h4{
+    margin: 0;
   }
   div,
   ul,
@@ -41,16 +47,19 @@ export default {
     }
   }
 }
-#nav {
-  padding: 30px;
+.vue-scroll-button {
+  border-radius: 0 !important;
+  padding: 0 !important;
+  background-color: #0000006e !important;
+  bottom: 100px;
+  right: 10px;
+  font-size: 40px;
+  width: 60px;
+  height: 50px;
+  font-family: monospace;
 }
-
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
-
-#nav a.router-link-exact-active {
-  color: #42b983;
+.vue-scroll-button:hover {
+  box-shadow: 1px 2px 4px 0px #000 !important;
+  transition: 0s !important;
 }
 </style>

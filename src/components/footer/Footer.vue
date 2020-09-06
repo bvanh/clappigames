@@ -9,8 +9,8 @@
         </p>
         <p>Email: lussom.co@gmail.com</p>
         <p>Điện thoại: 02438453888.</p>
-        <p>Chịu trách nghiệm nội dung: Shin Dongseok.</p>
-        <p>
+        <p>Chịu trách nghiệm nội dung: Lê Huy Hoàng.</p>
+        <p style="margin-bottom:5px">
           Giấy phép cung cấp dịch vụ trò chơi điện tử G1 trên mạng sô
           69/GP-BTTTT do Bộ Thông tin và Truyền thông cấp ngày 26/02/2020.
         </p>
@@ -28,8 +28,11 @@
       <a-row type="flex" justify="space-between">
         <a-col class="footer-info" :lg="{ span: 16 }">
           <ul>
+            <li>
+              <a href="https://www.facebook.com/clappigames" target="_blank">CSKH</a>
+            </li>
             <li v-for="menu of listMenuFt" :key="menu.id">
-              <a :href="menu.url" target="_blank">{{menu.name}}</a>
+              <router-link :to="menu.url">{{menu.name}}</router-link>
             </li>
           </ul>
         </a-col>
@@ -49,29 +52,24 @@ export default {
     return {
       listMenuFt: [
         {
-          id: 1,
-          name: "CSKH",
-          url: "https://www.facebook.com/clappigames",
-        },
-        {
           id: 2,
           name: "GAMES",
-          url: "",
+          url: "/games",
         },
         {
           id: 3,
           name: "TIN TỨC",
-          url: "",
+          url: "/news",
         },
         {
           id: 4,
           name: "ĐIỀU KHOẢN",
-          url: "",
+          url: "/terms",
         },
         {
           id: 5,
           name: "BẢO MẬT",
-          url: "",
+          url: "/privacy",
         },
       ],
     };

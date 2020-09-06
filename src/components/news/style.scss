@@ -1,0 +1,32 @@
+@import "../../assets/style/variables.scss";
+.news-container {
+  .title {
+    .title-game {
+      width: 10rem;
+      justify-content: center;
+    }
+    h3 {
+      overflow: hidden !important;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-box-orient: vertical;
+      -webkit-line-clamp: 1;
+      font-weight: bold;
+      width: 16rem;
+      color: $mn-active;
+      //   transform-origin: 50% 50% 0px;
+      //   animation: rotate 2s ease 0s infinite normal none running;
+    }
+  }
+}
+@keyframes rotate {
+  0% {
+    transform: rotate(0deg);
+  }
+  49% {
+    transform: rotate(90deg);
+  }
+  100% {
+    transform: rotate(90deg);
+  }
+}

@@ -69,4 +69,9 @@
       }
     }
   }
+  .log-img{
+    @include mobile{
+      display: none;
+    }
+  }
 }
