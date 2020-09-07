@@ -7,11 +7,11 @@
           <img :src="importImg('icon_game.png')" />
           <h3>3Q Phản Công</h3>
         </span>
-        <a>Trang chủ</a>
+        <router-link to='/'>Trang chủ</router-link>
         <img :src="importIcon('icon_dots.png')" />
-        <a href="https://www.facebook.com/3QZVN/" target="_blank">Fanpage</a>
-        <img :src="importImg('android.png')" />
-        <img :src="importImg('ios.png')" />
+        <a href="https://www.facebook.com/3QZVN/" target="_blank" id='fanpage'>Fanpage</a>
+        <img :src="importImg('android.png')" class="img-download"/>
+        <img :src="importImg('ios.png')" class="img-download"/>
       </div>
     </div>
     <a-row class="frame-1" :gutter="40">

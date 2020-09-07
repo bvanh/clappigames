@@ -1,7 +1,7 @@
 @import "../../assets/style/variables.scss";
 
 .game-detail {
-  .game-banner{
+  .game-banner {
     height: 200px;
   }
   .menu {
@@ -14,10 +14,16 @@
       span {
         position: relative;
         width: 9rem;
+        @include mobile-xs {
+          position: absolute;
+        }
         img {
           position: absolute;
           bottom: 0;
           left: 0;
+          @include mobile-xs {
+            bottom: 1.4rem;
+          }
         }
         h3 {
           @extend .font-static;
@@ -28,6 +34,12 @@
           width: 200%;
           font-size: 2.2rem;
           font-weight: bold;
+          @include mobile-xs {
+            top: -5.5rem;
+            left: 4.5rem;
+            font-size: 1.5rem;
+            width: 195%;
+          }
         }
       }
       a {
@@ -40,11 +52,21 @@
       img {
         padding: 0 0.5rem;
       }
+      .img-download {
+        @include mobile-xs {
+          width: 30%;
+        }
+      }
+      #fanpage {
+        @include mobile-xs {
+          display: none;
+        }
+      }
     }
   }
   .frame-1 {
     .video {
-      @include mobile{
+      @include mobile {
         padding-right: 0 !important;
       }
       div {
@@ -84,11 +106,10 @@
         color: black !important;
       }
     }
-    .section-right{
-      @include mobile{
+    .section-right {
+      @include mobile {
         display: none;
       }
     }
   }
 }
-

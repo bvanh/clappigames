@@ -7,9 +7,14 @@ $bg_nav2: #2b3f96;
   img {
     padding: 20px 0;
   }
-  .logo{
-    @include mobile-xs(){
-        max-width: 50%;
+  a {
+    @include mobile-xs{
+      text-align: left;
+    }
+    .logo {
+      @include mobile-xs() {
+        max-width: 80%;
+      }
     }
   }
   .icon-menu {
