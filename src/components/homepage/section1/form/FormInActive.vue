@@ -30,7 +30,7 @@
         <a-button type="primary" html-type="submit" class="login-form-button">ĐĂNG NHẬP</a-button>
         <p style="color:black">
           Chưa có tài khoản?
-          <a>Đăng ký ngay!</a>
+          <router-link to='register'>Đăng ký ngay!</router-link>
         </p>
       </a-form-item>
     </a-form>

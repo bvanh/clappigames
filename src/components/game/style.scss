@@ -1,6 +1,9 @@
 @import "../../assets/style/variables.scss";
 
 .game-detail {
+  .game-banner{
+    height: 200px;
+  }
   .menu {
     background: white;
     div {
@@ -41,6 +44,9 @@
   }
   .frame-1 {
     .video {
+      @include mobile{
+        padding-right: 0 !important;
+      }
       div {
         border-radius: $radius;
         height: 350px;
@@ -72,10 +78,17 @@
       .content-intro-game {
         background: white;
         padding: 1rem;
+        margin-bottom: 1rem;
       }
       p {
         color: black !important;
       }
     }
+    .section-right{
+      @include mobile{
+        display: none;
+      }
+    }
   }
 }
+

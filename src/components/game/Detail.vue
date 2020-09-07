@@ -1,6 +1,6 @@
 <template>
   <div class="game-detail">
-    <img :src="importImg('banner.png')" width="100%" />
+    <img src="../../assets/games/banner.png" width="100%" class="game-banner"/>
     <div class="menu">
       <div>
         <span>
@@ -15,13 +15,13 @@
       </div>
     </div>
     <a-row class="frame-1" :gutter="40">
-      <a-col :span="16" class="video" style="padding-left:0">
+      <a-col :span="24" :lg="{span:16}" class="video" style="padding-left:0">
         <youtube-media :video-id="videoId"></youtube-media>
       </a-col>
       <Form :log="{id:'',title:''}" />
     </a-row>
     <a-row class="section2" :gutter="40">
-      <a-col :span="16" class="section-left">
+      <a-col :span="24" :lg="{span:16}" class="section-left">
         <div class="title">
           <a class="title-game">
             <img :src="importIcon('icon_game_blue.png')" />

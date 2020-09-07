@@ -1,6 +1,6 @@
 <template>
   <a-row class="frame-1" :gutter="40">
-    <a-col :span="16" class="section-left">
+    <a-col :span="24"  :lg="{span:16}" class="section-left">
       <div class="news-container page-news">
         <div class="title">
           <div>

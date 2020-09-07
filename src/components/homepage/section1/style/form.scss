@@ -102,15 +102,41 @@
     transform: rotate(90deg);
   }
   .user-info {
+    padding: 0 1rem;
     .info {
       text-align: left;
-      padding-left: 1rem;
-      h3{
+      padding-left: 1.5rem;
+      h3 {
         @extend .font-static;
         font-size: 20px;
         font-weight: bold;
-        color:$mn-active;
+        color: $mn-active;
+      }
+      .user-id {
+        font-size: 1rem;
+        // margin-bottom: 1rem;
       }
     }
   }
+  .menus {
+    text-align: left;
+    font-size: 1.2rem;
+    margin-top: 2rem;
+    div {
+      padding: 1rem 0;
+      border-bottom: 1px solid $border-bt;
+      i {
+        margin-right: 1rem;
+      }
+    }
+    div:last-child {
+      border: 0;
+    }
+  }
+}
+.login-active {
+  @include mobile() {
+    display: none !important;
+  }
+  height: 350px !important;
 }

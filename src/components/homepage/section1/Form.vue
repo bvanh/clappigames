@@ -1,5 +1,5 @@
 <template>
-  <component :is="switchLogin(isLogin)" :log="log"></component>
+  <component :is="switchLogin(isLogin)" :log="log" :isLogin="isLogin"></component>
 </template>
 <script>
 import FormActive from "./form/FormActive";
@@ -12,7 +12,7 @@ export default {
   },
   data() {
     return {
-      isLogin: true,
+      isLogin: false,
     };
   },
   methods: {
