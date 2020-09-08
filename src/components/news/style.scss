@@ -12,10 +12,23 @@
       -webkit-box-orient: vertical;
       -webkit-line-clamp: 1;
       font-weight: bold;
-      width: 16rem;
+      width: 25rem;
       color: $mn-active;
       //   transform-origin: 50% 50% 0px;
       //   animation: rotate 2s ease 0s infinite normal none running;
+    }
+  }
+  .content{
+    padding-top: 1rem;
+    text-align:left;
+    h3{
+      font-weight: bold;
+    }
+    p{
+      margin: .2rem 0 .5rem 0!important;
+      i{
+        margin-right: 5px;
+      }
     }
   }
 }

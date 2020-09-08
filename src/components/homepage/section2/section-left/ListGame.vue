@@ -18,17 +18,20 @@
         :key="game.id"
         class="game-info"
       >
-        <router-link :to="`/games/${game.id}`">
-          <img :src="importImgGame(game.img)" width="100%" class="game-thumbnail" />
+        <router-link :to="`${game.partnerId===null?'':`/games/${game.shortName}`}`"  :class="[game.partnerId===null?'':'game-thumbnail']">
+          <img
+            :src="game.gameImg"
+            width="100%"
+          />
         </router-link>
         <h3>
-          <router-link :to="`/games/${game.id}`">{{game.name}}</router-link>
+          <router-link :to="`/games/${game.shortName}`">{{game.name}}</router-link>
         </h3>
         <div>
-          {{game.type}}
+          {{game.category}}
           <span>
             <img :src="importIcon('icon_people.png')" />
-            {{game.view}}
+            {{game.content.length}}
           </span>
         </div>
       </a-col>
@@ -53,6 +56,9 @@ export default {
     importImgGame(url) {
       return importImgGames[url];
     },
+  },
+  created() {
+    console.log(this.games);
   },
 };
 </script>

@@ -7,26 +7,32 @@
       <a-icon type="right" />
     </button>
     <hooper :infiniteScroll="true" ref="carousel" height="100%">
-      <slide>
-        <img :src="importImg('slide1.jpg')" class="img-slide" />
-      </slide>
-      <slide>
-        <img :src="importImg('slide1.jpg')" class="img-slide" />
+      <slide v-for="slide of sliders" :key="slide.imgUrl">
+        <img :src="slide.imgUrl" class="img-slide" />
       </slide>
       <hooper-pagination slot="hooper-addons"></hooper-pagination>
-      <!-- <hooper-navigation slot="hooper-addons"></hooper-navigation> -->
     </hooper>
   </a-col>
 </template>
 
 <script>
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
+import { getSliders } from "../../../ultils/getData/sliders";
+import { api, type } from "../../../api/apiUrl";
 import { importImgSlider } from "../../../ultils/importImg";
 import "hooper/dist/hooper.css";
+const { HOME } = type.sliders;
+const { SLIDERS } = api;
 export default {
   name: "Slider",
   data() {
-    return { carouselData: 0 };
+    return {
+      carouselData: 0,
+      sliders: [],
+      params: {
+        type: HOME,
+      },
+    };
   },
   watch: {
     carouselData() {
@@ -49,6 +55,9 @@ export default {
     Slide,
     HooperPagination,
     // HooperNavigation,
+  },
+  created() {
+    getSliders(this, SLIDERS, this.params);
   },
 };
 </script>

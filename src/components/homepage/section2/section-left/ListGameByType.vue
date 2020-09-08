@@ -33,8 +33,8 @@
         <h3
           v-for="game of games"
           :key="game.id"
-          v-show="printGameName(game,COMMING_SOON)"
-        >{{printGameName(game,COMMING_SOON)}}</h3>
+          v-show="printGameName(game,CASUAL)"
+        >{{printGameName(game,CASUAL)}}</h3>
       </a-col>
     </a-row>
   </div>
@@ -45,9 +45,9 @@ export default {
   name: "GameByType",
   data() {
     return {
-      ROLE_PLAYING: "NHẬP VAI",
-      STRATEGY: "CHIẾN THUẬT",
-      COMMING_SOON: "GIẢI TRÍ",
+      ROLE_PLAYING: "ROLE_PLAYING",
+      STRATEGY: "STRATEGY",
+      CASUAL: "CASUAL",
     };
   },
   props: {
@@ -63,7 +63,7 @@ export default {
     printGameName(game, type) {
       switch (game.category) {
         case type:
-          return game.name;
+          return game.fullName;
         default:
           return false;
       }

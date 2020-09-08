@@ -101,6 +101,13 @@
         background: white;
         padding: 1rem;
         margin-bottom: 1rem;
+        div {
+          div {
+            img {
+              max-width: 100% !important;
+            }
+          }
+        }
       }
       p {
         color: black !important;

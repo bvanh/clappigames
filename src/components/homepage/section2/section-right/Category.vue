@@ -7,8 +7,8 @@
     </div>
     <a-row :gutter="24" type='flex'>
       <a-col :span="8" v-for="game of games" :key="game.id" class="game-info">
-        <img :src="importImgGame(game.icon)" class="game-avatar" />
-        <h3>{{game.name}}</h3>
+        <img :src="game.avatar" class="game-avatar" />
+        <h3 class="game-fullname">{{game.fullName}}</h3>
         <div>{{game.category}}</div>
       </a-col>
     </a-row>

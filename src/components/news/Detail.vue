@@ -1,11 +1,11 @@
 <template>
   <a-row class="frame-1" :gutter="40">
-    <a-col :span="24"  :lg="{span:16}" class="section-left">
+    <a-col :span="24" :lg="{span:16}" class="section-left">
       <div class="news-container page-news">
         <div class="title">
           <div>
             <a
-              :class="`title-game ${menu.id===isActiveMenu?'menu-active':''} title-${menu.subClass}`"
+              :class="`title-game ${menu.id===isActiveMenu?'menu-active2':''} title-${menu.subClass}`"
               v-for="menu of menus"
               :key="menu.id"
               @click="setActiveMenu(menu.id)"
@@ -16,58 +16,18 @@
               <img :src="importIcon(menu.icon2)" class="dots" />
             </a>
           </div>
-          <h3 class="title-news">[CHÍNH THỨC] RA MẮT LIÊN QUÂN MA THUẬT TRÊN IOS</h3>
-          <router-link to="/news" class="title-see-all">
-            Xem thêm
-            <a-icon type="forward" />
-          </router-link>
+          <h3 class="title-news">{{news.subject}}</h3>
         </div>
         <div class="content">
-          <div class="col-12 mt-3">
-            <h5 class="font-weight-bold">[CHÍNH THỨC] RA MẮT LIÊN QUÂN MA THUẬT TRÊN IOS</h5>
-          </div>
-          <div class="col-12">
-            <img
-              src="https://clappigames.com/static/images/news/clock.png"
-              style="width: 11px; height: 11px"
-              class="float-left"
-            />
-            <span class="ml-2" style="font-size: 12px; color: #8f8f8f">15/07/2019</span>
-          </div>
-          <div class="col-12 mt-3" id="news-content">
-            <p>
-              Sau bao ngày mong ngóng, chờ đợi thì phiên bản chính thức của Liên Quân Ma Thuật đã có mặt trên Appstore, các bạn hay truy cập ngay:
-              <a
-                href="https://apps.apple.com/vn/app/id1455948758"
-                target="_blank"
-              >https://apps.apple.com/vn/app/id1455948758</a> hoặc tìm kiếm "Liên Quân Ma Thuật" để tải ngay game về nhé.
-              <br />
-            </p>
-            <div style="text-align: center;">
-              <br />
-              <div style="text-align: left;">
-                &nbsp;Sau khi cài Game xong hãy nhanh chóng inbox Fanpage
-                <a
-                  href="https://www.facebook.com/lienquanmathuat"
-                  target="_blank"
-                >Liên Quân Ma Thuật</a> để nhận VIP code để trải nghiệm Game nha &lt;3&nbsp;
-                <br />&nbsp;Và đừng quên truy cập:
-                <a
-                  href="https://nap.clappigames.com/"
-                  target="_blank"
-                >https://nap.clappigames.com/</a> để nạp ngay C-coin vào Game cho mình rồi nhé.
-                <br />Còn chờ gì nữa mà không truy cập ngay để chơi game nào &lt;3
-                <br />
-              </div>
-            </div>
-            <p></p>
-          </div>
+          <h3>{{news.subject}}</h3>
+          <p><a-icon type="clock-circle" />{{formatDate(news.createAt)}}</p>
+          <vue-markdown>{{news.content}}</vue-markdown>
         </div>
       </div>
     </a-col>
     <a-col :span="8" class="section-right" style="padding:0">
       <Category :games="getGames" />
-      <Banner :bn="bn" />
+      <Banner :bn="getBanners[1]" />
       <Fb />
     </a-col>
   </a-row>
@@ -76,12 +36,18 @@
 import Category from "../homepage/section2/section-right/Category";
 import Banner from "../homepage/Banner";
 import Fb from "../homepage/Fb";
+import VueMarkdown from "vue-markdown";
+import {formatDate} from '../../ultils/format'
 import { importImgIcon } from "../../ultils/importImg";
+import { getNewsDetail } from "../../ultils/getData/news";
+import { api } from "../../api/apiUrl";
+const { NEWS_DETAIL } = api;
 export default {
   data() {
     return {
       isActiveMenu: 1,
       bn: "banner2.jpg",
+      news: null,
       menus: [
         {
           id: 1,
@@ -101,6 +67,9 @@ export default {
     };
   },
   computed: {
+    getBanners() {
+      return this.$store.getters.banners;
+    },
     getGames() {
       return this.$store.getters.games;
     },
@@ -112,11 +81,17 @@ export default {
     setActiveMenu(id) {
       this.isActiveMenu = id;
     },
+    formatDate:formatDate
+  },
+  created() {
+    const newsId = this.$route.params.id;
+    getNewsDetail(this, NEWS_DETAIL + newsId);
   },
   components: {
     Category,
     Banner,
     Fb,
+    VueMarkdown,
   },
 };
 </script>

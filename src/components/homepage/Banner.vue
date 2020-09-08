@@ -1,14 +1,13 @@
 <template>
   <div class="banner">
-    <img :src="importImg(bn)" width="100%" />
+    <img :src="bn.image" width="100%" />
   </div>
 </template>
-
 <script>
 import { importImg } from "../../ultils/importImg";
 export default {
   props: {
-    bn: String,
+    bn: Object,
   },
   methods: {
     importImg(url) {
@@ -17,6 +16,5 @@ export default {
   },
 };
 </script>
-
 <style>
 </style>

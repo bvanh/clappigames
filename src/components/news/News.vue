@@ -5,7 +5,7 @@
     </a-col>
     <a-col :span="8" class="section-right" style="padding:0">
       <Category :games="getGames" />
-      <Banner :bn="bn" />
+      <Banner :bn="getBanners[1]" />
       <Fb />
     </a-col>
   </a-row>
@@ -26,20 +26,23 @@ export default {
       span: 6,
       spanNews: 24,
       bn: "banner2.jpg",
-      newGame: {
-        id: 4,
-        name: "Comming soon",
-        type: "Game mobile",
-        category: "GIẢI TRÍ",
-        view: 1010,
-        img: "img2.jpg",
-        icon: "icon_game.png",
-      },
+      // newGame: {
+      //   id: 4,
+      //   name: "Comming soon",
+      //   type: "Game mobile",
+      //   category: "GIẢI TRÍ",
+      //   view: 1010,
+      //   img: "img2.jpg",
+      //   icon: "icon_game.png",
+      // },
     };
   },
   computed: {
+    getBanners() {
+      return this.$store.getters.banners;
+    },
     getGames() {
-      return [...this.$store.getters.games, this.newGame];
+      return this.$store.getters.games;
     },
   },
   components: {

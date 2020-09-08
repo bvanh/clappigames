@@ -6,7 +6,7 @@
           :class="`title-game ${menu.id===isActiveMenu?'menu-active':''} title-${menu.subClass}`"
           v-for="menu of menus"
           :key="menu.id"
-          @click="setActiveMenu(menu.id)"
+          @click="setActiveMenu(menu.id,menu.subClass)"
         >
           <div :class="`${menu.id===isActiveMenu?'rectangle':''} ${menu.subClass}`"></div>
           <img :src="importIcon(menu.icon1)" />
@@ -28,14 +28,14 @@
         class="news"
       >
         <a-row :gutter="12">
-          <a-col :span="12" class="thumbnail" :style="{backgroundImage:getBackgroundUrl(news.img)}"></a-col>
+          <a-col :span="12" class="thumbnail" :style="{backgroundImage:`url(${news.image})`}"></a-col>
           <a-col :span="12" class="news-info">
             <h4>
-              <router-link :to="`/news/detail/${news.id}`">{{news.title}}</router-link>
+              <router-link :to="`/news/detail/${news.newsId}`">{{news.subject}}</router-link>
             </h4>
             <div class="news-footer">
               <a-icon type="clock-circle" />
-              <span>{{news.created_at}}</span>
+              <span>{{formatDate(news.createAt)}}</span>
             </div>
           </a-col>
         </a-row>
@@ -58,7 +58,10 @@ import {
   importImgGames,
   importImg,
 } from "../../../../ultils/importImg";
-import { news } from "../../../../ultils/valDefault";
+import { formatDate } from "../../../../ultils/format";
+import { getNews } from "../../../../ultils/getData/news";
+import { api } from "../../../../api/apiUrl";
+const { NEWS_ALL } = api;
 export default {
   name: "ListGame",
   props: {
@@ -69,7 +72,12 @@ export default {
   data() {
     return {
       isActiveMenu: 1,
-      listNews: news,
+      listNews: [],
+      type: null,
+      params: {
+        pageSize: 10,
+        count: 4,
+      },
       menus: [
         {
           id: 1,
@@ -105,12 +113,22 @@ export default {
     importImg(url) {
       return importImg[url];
     },
-    getBackgroundUrl(pic) {
-      return `url(${require("../../../../assets/" + pic)})`;
-    },
-    setActiveMenu(id) {
+    setActiveMenu(id, type) {
       this.isActiveMenu = id;
+      this.type = `/${type}`;
     },
+    formatDate: formatDate,
+  },
+  watch: {
+    type: {
+      deep: true,
+      handler() {
+        getNews(this, NEWS_ALL + this.type, this.params);
+      },
+    },
+  },
+  created() {
+    this.type = "/all";
   },
 };
 </script>

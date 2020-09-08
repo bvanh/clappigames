@@ -3,7 +3,7 @@
     <a-col :span="24" class="section-left" style="padding:0">
       <ListGame :games="getGames" :span="span" />
       <ListGameByType :games="getGames" />
-      <Banner :bn="bn" />
+      <Banner :bn="getBanners[1]" />
     </a-col>
   </a-row>
 </template>
@@ -12,11 +12,6 @@ import ListGame from "../homepage/section2/section-left/ListGame";
 import ListGameByType from "../homepage/section2/section-left/ListGameByType";
 import Banner from "../homepage/Banner";
 export default {
-  //   methods: {
-  //     importImg(url) {
-  //       return importImg[url];
-  //     },
-  //   },
   data() {
     return {
       span: 6,
@@ -33,8 +28,11 @@ export default {
     };
   },
   computed: {
+    getBanners() {
+      return this.$store.getters.banners;
+    },
     getGames() {
-      return [...this.$store.getters.games,this.newGame];
+      return [...this.$store.getters.games, this.newGame];
     },
   },
   components: {

@@ -3,12 +3,12 @@
     <a-col :span="24" class="section-left" :lg="{span:16}">
       <ListGame :games="getGames" :span="span" />
       <ListGameByType :games="getGames" />
-      <Banner :bn="bn1" />
+      <Banner :bn="getBanners[0]" />
       <News :spanNews="spanNews" />
     </a-col>
     <a-col :span="8" class="section-right">
       <Category :games="getGames" />
-      <Banner :bn="bn2" />
+      <Banner :bn="getBanners[1]" />
       <Fb />
     </a-col>
   </a-row>
@@ -32,7 +32,11 @@ export default {
   },
   computed: {
     getGames() {
+      // console.log(this.$store.getters.games);
       return this.$store.getters.games;
+    },
+    getBanners() {
+      return this.$store.getters.banners;
     },
   },
   components: {

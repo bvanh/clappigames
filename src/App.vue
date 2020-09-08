@@ -18,6 +18,10 @@ export default {
     Footer,
     "vue-scroll-to-top": scrollUp,
   },
+  created() {
+    this.$store.dispatch("getListGames");
+    this.$store.dispatch("getDataBanners");
+  },
 };
 </script>
 <style lang='scss'>
@@ -33,10 +37,15 @@ export default {
   background-color: #ebebeb;
   p {
     margin: 0;
-    color: white;
   }
-  h1,h2,h3,h4{
+  h1,
+  h2,
+  h3,
+  h4 {
     margin: 0;
+  }
+  img{
+    max-width: 100%;
   }
   div,
   ul,
