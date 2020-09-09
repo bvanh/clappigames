@@ -28,8 +28,8 @@
         class="news"
       >
         <a-row :gutter="12">
-          <a-col :span="12" class="thumbnail" :style="{backgroundImage:`url(${news.image})`}"></a-col>
-          <a-col :span="12" class="news-info">
+          <a-col :span="colNews[0]" class="thumbnail" :style="{backgroundImage:`url(${news.image})`}"></a-col>
+          <a-col :span="colNews[1]" class="news-info">
             <h4>
               <router-link :to="`/news/detail/${news.newsId}`">{{news.subject}}</router-link>
             </h4>
@@ -40,15 +40,6 @@
           </a-col>
         </a-row>
       </a-col>
-      <!-- <img :src="importImgGame(game.img)" width="100%" class="game-thumbnail" />
-        <h3>{{game.name}}</h3>
-        <div>
-          {{game.type}}
-          <span>
-            <a-icon type="eye" style="margin-right:5px" />
-            {{game.view}}
-          </span>
-      </div>-->
     </a-row>
   </div>
 </template>
@@ -67,7 +58,9 @@ export default {
   props: {
     games: Array,
     spanNews: Number,
+    colNews:Array,
     isPage: String,
+    pageCount:Number
   },
   data() {
     return {
@@ -76,7 +69,7 @@ export default {
       type: null,
       params: {
         pageSize: 10,
-        count: 4,
+        count: this.pageCount,
       },
       menus: [
         {

@@ -6,7 +6,6 @@ const getSliders = (thisObj, path, params) => {
     .get(path, { params })
     .then((response) => {
       thisObj.sliders = response.data;
-      console.log(response);
     })
     .catch((e) => {
       console.log(e.response.data);

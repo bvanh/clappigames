@@ -4,7 +4,7 @@
       <ListGame :games="getGames" :span="span" />
       <ListGameByType :games="getGames" />
       <Banner :bn="getBanners[0]" />
-      <News :spanNews="spanNews" />
+      <News :spanNews="spanNews" :colNews="colNews" :pageCount="pageCount" />
     </a-col>
     <a-col :span="8" class="section-right">
       <Category :games="getGames" />
@@ -26,6 +26,8 @@ export default {
     return {
       span: 8,
       spanNews: 12,
+      colNews: [12, 12],
+      pageCount: 4,
       bn2: "banner2.jpg",
       bn1: "banner.jpg",
     };

@@ -5,6 +5,7 @@ const getGamesIntro = () => {
  return baseApi
     .get(GAMES_INTRO)
     .then((response) => {
+      console.log(response)
       return response;
     })
     .catch((e) => {
