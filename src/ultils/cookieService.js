@@ -1,23 +1,24 @@
-import Cookies from 'js-cookie'
+// import Cookies from 'js-cookie'
+import Vue from "vue";
 const cookieService = {
-    setToken: (token, accessToken) => {
-        Cookies.set("tokenRoulette", token, { expires: 60, secure: true });
-        Cookies.set("accessTokenRoulette", accessToken, { secure: true });
-    },
-    getAccessToken: () => {
-        return Cookies.get('accessTokenRoulette');
-    },
-    getToken: () => {
-        if (Cookies.get('tokenRoulette')) {
-            return JSON.parse(Cookies.get('tokenRoulette'));
-        } else {
-            return false;
-        }
-    },
-    resetToken: () => {
-        Cookies.remove("tokenRoulette");
-        Cookies.remove("accessTokenRoulette");
-    },
+  setToken: (token, accessToken) => {
+    Vue.$cookies.set("tokenClappi", token, { expires: 60, secure: true });
+    Vue.$cookies.set("accessTokenClappi", accessToken, { secure: true });
+  },
+  getAccessToken: () => {
+    return Vue.$cookies.get("accessTokenClappi");
+  },
+  getToken: () => {
+    if (Vue.$cookies.get("tokenClappi")) {
+      return Vue.$cookies.get("tokenClappi");
+    } else {
+      return false;
+    }
+  },
+  resetToken: () => {
+    Vue.$cookies.remove("tokenClappi");
+    Vue.$cookies.remove("accessTokenClappi");
+  },
 };
 
 export default cookieService;

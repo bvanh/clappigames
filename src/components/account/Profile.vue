@@ -5,16 +5,20 @@
     </div>
     <div class="detail">
       <h3>UserName :</h3>
-      <span>Clappi</span>
+      <span>{{userInfo.username}}</span>
     </div>
     <div class="detail">
       <h3>UserID :</h3>
-      <span>99999999</span>
+      <span>{{userInfo.fakeId}}</span>
     </div>
   </div>
 </template>
 <script>
-export default {};
+export default {
+  props: {
+    userInfo: Object,
+  },
+};
 </script>
 
 <style src='./style.scss' lang='scss' scoped>

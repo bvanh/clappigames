@@ -5,61 +5,91 @@
     </div>
     <div class="detail">
       <h3>Họ và Tên :</h3>
-      <a-input value="demo" />
+      <a-input :value="nickname" name="nickname" @change="getInfoUser" />
     </div>
     <div class="detail">
       <h3>Ngày sinh :</h3>
       <a-date-picker
-        :default-value="moment('2015/01/01', dateFormat)"
+        :value="formatDate(dateOfBirth)"
         :format="dateFormat"
         class="select-birth"
+        @change="getDateOfBirth"
       />
     </div>
     <div class="detail id-card">
       <h3>CMND :</h3>
       <div style="width:100%">
-        <a-input value="demo" style="width:30%" />
+        <a-input :value="identifyCard" style="width:30%" name="identifyCard" @change="getInfoUser" />
         <h3>Ngày DK :</h3>
         <a-date-picker
-          :default-value="moment('2015/01/01', dateFormat)"
+          :value="formatDate(dateOfIssue)"
+          @change="getDateOfIssue"
           :format="dateFormat"
           class="date"
         />
         <h3>Nơi cấp :</h3>
-        <a-input value="demo" style="width:25%" />
+        <a-input :value="placeOfIssue" style="width:25%" name="placeOfIssue" @change="getInfoUser" />
       </div>
     </div>
     <div class="detail">
       <h3>Giới tính :</h3>
-      <a-radio-group :options="options" @change="onChange1" />
+      <a-radio-group :options="options" @change="getGender" :value="gender" />
     </div>
     <div class="detail">
       <h3>Nghề nghiệp :</h3>
-      <a-input value="demo" />
+      <a-input :value="job" name="job" @change="getInfoUser" />
     </div>
     <div class="detail">
       <h3>Địa chỉ:</h3>
-      <a-input value="demo" />
+      <a-input :value="address" name="address" @change="getInfoUser" />
     </div>
-    <button class="btn-submit">Cập nhật</button>
+    <button class="btn-submit" @click="updateInfo">Cập nhật</button>
   </div>
 </template>
 <script>
+// import {formatDate} from '../../ultils/format'
+import { updateInfoUser } from "../../ultils/getData/user";
 import moment from "moment";
 export default {
+  props: {
+    userInfo: Object,
+    getInfo:Function
+  },
   data() {
     return {
-      dateFormat: "YYYY/MM/DD",
+      dateFormat: "DD/MM/YYYY",
       options: [
-        { label: "Nam", value: "Male" },
-        { label: "Nữ", value: "Female" },
-        { label: "Khác", value: "Other" },
+        { label: "Nam", value: "MALE" },
+        { label: "Nữ", value: "FEMALE" },
+        { label: "Khác", value: "OTHER" },
       ],
+      ...this.userInfo,
     };
   },
   methods: {
-    onChange1(e) {
-      console.log("radio1 checked", e.target.value);
+    getGender(e) {
+      this.gender = e.target.value;
+    },
+    getInfoUser(e) {
+      const { name, value } = e.target;
+      this[name] = value;
+    },
+    getDateOfBirth(e, dateString) {
+      this.dateOfBirth = dateString;
+    },
+    getDateOfIssue(e, dateString) {
+      this.dateOfIssue = dateString;
+    },
+    formatDate(date) {
+      switch (date) {
+        case "":
+          return "";
+        default:
+          return moment(date, this.dateFormat);
+      }
+    },
+    updateInfo() {
+      updateInfoUser(this);
     },
     moment,
   },

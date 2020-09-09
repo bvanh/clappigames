@@ -1,12 +1,19 @@
 <template>
   <div class="game-container">
     <div class="title">
-      <a class="title-game">GAME HOT</a>
+      <a
+        :class="[isGamesHot?'title-game title-game-active':'title-game']"
+        @click="switchTypeGames"
+      >GAME HOT</a>
       <img :src="importIcon('icon_dots.png')" />
-      <a class="title-game">GAME NEW</a>
+      <a
+        class="title-game"
+        :class="[isGamesHot?'title-game':'title-game title-game-active']"
+        @click="switchTypeGames"
+      >GAME NEW</a>
     </div>
-    <a-row :gutter="24" type='flex'>
-      <a-col :span="8" v-for="game of games" :key="game.id" class="game-info">
+    <a-row :gutter="24" type="flex">
+      <a-col :span="8" v-for="game of gamesHot()" :key="game.id" class="game-info">
         <img :src="game.avatar" class="game-avatar" />
         <h3 class="game-fullname">{{game.fullName}}</h3>
         <div>{{game.category}}</div>
@@ -23,9 +30,22 @@ export default {
     games: Array,
   },
   data() {
-    return {};
+    return {
+      isGamesHot: true,
+    };
   },
   methods: {
+    switchTypeGames() {
+      this.isGamesHot = !this.isGamesHot;
+    },
+    gamesHot() {
+      switch (this.isGamesHot) {
+        case true:
+          return this.$store.getters.gamesHot;
+        default:
+          return this.$store.getters.gamesNew;
+      }
+    },
     importImgGame(url) {
       return importImgGames[url];
     },

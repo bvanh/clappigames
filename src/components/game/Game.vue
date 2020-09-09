@@ -23,7 +23,7 @@ export default {
       return this.$store.getters.banners;
     },
     getGames() {
-      return this.$store.getters.games;
+      return this.$store.getters.games
     },
   },
   components: {

@@ -3,53 +3,26 @@
     <a-col :span="16" class="log-img">
       <img :src="importImg('signup.png')" />
     </a-col>
-    <a-col :span="24" :lg="{span:8}" class="form-container form-login">
+    <a-col :span="24" :lg="{ span: 8 }" class="form-container form-login">
       <h3 class="form-login-title">ĐĂNG KÝ TÀI KHOẢN</h3>
       <a-form id="normal-login" :form="form" class="form" @submit="handleSubmit">
-        <a-form-item>
-          <a-input
-            v-decorator="[
-          'userName',
-          { rules: [{ required: true, message: 'Kiểm tra lại tên đăng nhập!' }] },
-        ]"
-            placeholder="Tài khoản Clappigames"
-          >
+        <a-form-item :validate-status="statusUser.val" :help="statusUser.help">
+          <a-input v-decorator="['userName']" placeholder="Tài khoản Clappigames">
             <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
-        <a-form-item>
-          <a-input
-            v-decorator="[
-          'password',
-          { rules: [{ required: true, message: 'Kiểm tra lại mật khẩu!' }] },
-        ]"
-            type="password"
-            placeholder="Mật khẩu"
-          >
+        <a-form-item :validate-status="statusPwd.val" :help="statusPwd.help">
+          <a-input v-decorator="['password']" type="password" placeholder="Mật khẩu">
             <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
-                <a-form-item>
-          <a-input
-            v-decorator="[
-          'phone',
-          { rules: [{ required: true, message: 'Kiểm tra lại số điện thoại!' }] },
-        ]"
-            type=""
-            placeholder="Số điện thoại"
-          >
+        <a-form-item :validate-status="statusPhont.val" :help="statusPhone.help">
+          <a-input v-decorator="['phone']" type placeholder="Số điện thoại">
             <a-icon slot="prefix" class="icon-phone" type="phone" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
-                <a-form-item>
-          <a-input
-            v-decorator="[
-          'mail',
-          { rules: [{ required: true, message: 'Kiểm tra lại Email!' }] },
-        ]"
-            type="mail"
-            placeholder="Email"
-          >
+        <a-form-item :validate-status="statusMail.val" :help="statusMail.help">
+          <a-input v-decorator="['mail']" type="mail" placeholder="Email">
             <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
@@ -73,12 +46,18 @@
 </template>
 <script>
 import { importImg } from "../../ultils/importImg";
+import { validateRegister, statusIpDefault } from "../../ultils/valDefault";
+import { register } from "../../ultils/register";
 export default {
   data() {
     return {
       logIndex: {
         id: "form-login",
         title: "ĐĂNG NHẬP TÀI KHOẢN",
+        statusUser: { ...statusIpDefault },
+        statusPwd: { ...statusIpDefault },
+        statusPhone: { ...statusIpDefault },
+        statusMail: { ...statusIpDefault },
       },
     };
   },
@@ -89,17 +68,21 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
-        if (!err) {
-          console.log("Received values of form: ", values);
+        const { username, password,mail,phone } = values;
+        if (validateRegister(this, username, password, phone, mail)) {
+          register(this, values, values.username);
         }
       });
     },
     importImg(url) {
       return importImg[url];
     },
+    resetStatus() {
+      this.statusUser = { ...statusIpDefault };
+      this.statusPwd = { ...statusIpDefault };
+    },
   },
 };
 </script>
 
-<style src='../homepage/section1/style/slide.scss' lang='scss'>
-</style>
+<style src="../homepage/section1/style/slide.scss" lang="scss"></style>

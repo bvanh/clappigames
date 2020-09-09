@@ -25,7 +25,7 @@ const routes = [
   },
   {
     path: "/games/:id",
-    name: "Games",
+    name: "GameDetail",
     component: GameDetail,
   },
   {
@@ -35,7 +35,7 @@ const routes = [
   },
   {
     path: "/news/detail/:id",
-    name: "News",
+    name: "NewsDetail",
     component: NewsDetail,
   },
   {

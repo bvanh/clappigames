@@ -6,21 +6,27 @@
         <img src="../../../../assets/icon/avatar.png" width="100%" />
       </a-col>
       <a-col :span="16" class="info">
-        <h3>Username</h3>
-        <span class="user-id">UserID: 535534</span>
-        <h5>VIP 1</h5>
+        <h3>{{userInfo.username}}</h3>
+        <span class="user-id">UserID: {{userInfo.fakeId}}</span>
+        <p class="user-id">Coin: {{userInfo.coin}}</p>
       </a-col>
     </a-row>
     <a-col class="menus">
       <div v-for="menu of controls" :key="menu.id">
         <a-icon :type="menu.icon"></a-icon>
-        <span>{{menu.name}}</span>
+        <router-link :to="menu.link"><span>{{menu.name}}</span></router-link>
+      </div>
+      <div @click="logout">
+        <a-icon type="logout"></a-icon>
+        <span>Đăng xuất</span>
       </div>
     </a-col>
   </a-col>
 </template>
 <script>
 import { importImgForm } from "../../../../ultils/importImg";
+import { getInfoUser } from "../../../../ultils/getData/user";
+import cookieService from "../../../../ultils/cookieService";
 export default {
   name: "Form",
   props: {
@@ -30,15 +36,27 @@ export default {
     return {
       controls: [
         { id: 1, icon: "user", link: "/account", name: "Tài khoản" },
-        { id: 2, icon: "profile", link: "/privacy", name: "Bảo mật" },
-        { id: 4, icon: "logout", link: "", name: "Đăng xuất" },
+        {
+          id: 2,
+          icon: "profile",
+          link: "/password",
+          name: "Đổi mật khẩu",
+        },
       ],
+      userInfo: {},
     };
   },
   methods: {
     importImg(url) {
       return importImgForm[url];
     },
+    logout() {
+      this.$store.dispatch("logout");
+      cookieService.resetToken();
+    },
+  },
+  created() {
+    getInfoUser(this);
   },
 };
 </script>

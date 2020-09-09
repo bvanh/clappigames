@@ -1,10 +1,11 @@
 <template>
-  <component :is="switchLogin(isLogin)" :log="log" :isLogin="isLogin"></component>
+  <component :is="switchLogin()" :log="log" :isLogin="isLogin"></component>
 </template>
 <script>
 import FormActive from "./form/FormActive";
 import FormInActive from "./form/FormInActive";
 import { importImgForm } from "../../../ultils/importImg";
+import { checkToken } from "../../../ultils/checkToken";
 export default {
   name: "Form",
   props: {
@@ -12,21 +13,29 @@ export default {
   },
   data() {
     return {
-      isLogin: false,
+      isLogin: this.$store.getters.isLogin,
     };
   },
   methods: {
     importImg(url) {
       return importImgForm[url];
     },
-    switchLogin(isLogin) {
-      switch (isLogin) {
+    switchLogin() {
+      switch (this.$store.getters.isLogin) {
         case true:
           return FormActive;
         default:
           return FormInActive;
       }
     },
+  },
+  created() {
+    if (checkToken()) {
+      this.$store.dispatch("logout");
+    }else{
+      this.$store.dispatch("login");
+    }
+    
   },
 };
 </script>
