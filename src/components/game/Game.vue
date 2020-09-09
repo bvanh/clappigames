@@ -3,7 +3,7 @@
     <a-col :span="24" class="section-left" style="padding:0">
       <ListGame :games="getGames" :span="span" />
       <ListGameByType :games="getGames" />
-      <Banner :bn="getBanners[1]" />
+      <Banner :bn="getBanners[0]" />
     </a-col>
   </a-row>
 </template>
@@ -16,15 +16,6 @@ export default {
     return {
       span: 6,
       bn: "banner.jpg",
-      newGame: {
-        id: 4,
-        name: "Comming soon",
-        type: "Game mobile",
-        category: "GIẢI TRÍ",
-        view: 1010,
-        img: "img2.jpg",
-        icon: "icon_game.png",
-      },
     };
   },
   computed: {
@@ -32,7 +23,7 @@ export default {
       return this.$store.getters.banners;
     },
     getGames() {
-      return [...this.$store.getters.games, this.newGame];
+      return this.$store.getters.games
     },
   },
   components: {

@@ -8,12 +8,15 @@
   @extend .section-left;
   .title {
     justify-content: space-around !important;
+    .title-game-active {
+      color: $mn-active !important;
+    }
   }
   .game-avatar {
     width: 100%;
     border-radius: $radius;
   }
-  .game-fullname{
+  .game-fullname {
     @extend .font-static;
     position: relative;
     overflow: hidden !important;
