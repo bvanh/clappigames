@@ -39,7 +39,6 @@ export default {
       this.isGamesHot = !this.isGamesHot;
     },
     gamesHot() {
-      console.log(this.$store.getters.gamesHot);
       switch (this.isGamesHot) {
         case true:
           return this.$store.getters.gamesHot;

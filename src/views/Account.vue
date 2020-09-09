@@ -6,9 +6,12 @@
           <img :src="importImg('avatar.png')" width="100%" />
         </a-col>
         <a-col :span="16" class="username">
-          <h3>Username</h3>
-          <h4>UserID: 9999900909</h4>
-          <h4>VIP 1</h4>
+          <h3>{{userInfo.username}}</h3>
+          <h4>UserID: {{userInfo.fakeId}}</h4>
+          <h4>
+            Coin:
+            <span style="color:#ff560e">{{userInfo.coin}}</span>
+          </h4>
         </a-col>
       </a-row>
       <div
@@ -22,18 +25,24 @@
       </div>
     </a-col>
     <a-col :span="17" style="padding-right:0">
-      <component :is="printInfoAccount(isContenAccount)"></component>
+      <component
+        :is="printInfoAccount(isContenAccount)"
+        :userInfo="userInfo"
+        :getInfo="getInfoUser"
+      ></component>
     </a-col>
   </a-row>
 </template>
-
 <script>
 import { controlsAccount } from "../components/account/services";
 import Profile from "../components/account/Profile";
 import Info from "../components/account/Info";
-import Feedback from '../components/account/feedback/Feedback'
+import Privacy from "../components/account/Privacy";
+import Feedback from "../components/account/feedback/Feedback";
+import { getInfoUser } from "../ultils/getData/user";
+import { redirectPage } from "../ultils/checkToken";
 import { importImgIcon } from "../ultils/importImg";
-const { PROFILE, INFO, FEEDBACK, LOGOUT } = controlsAccount;
+const { PROFILE, INFO, FEEDBACK, LOGOUT, PRIVACY } = controlsAccount;
 export default {
   name: "Account",
   data() {
@@ -43,11 +52,16 @@ export default {
         { id: 1, icon: "user", name: PROFILE },
         { id: 2, icon: "profile", name: INFO },
         { id: 3, icon: "gift", name: FEEDBACK },
+        { id: 6, icon: "lock", name: PRIVACY },
         { id: 4, icon: "logout", name: LOGOUT },
       ],
+      userInfo: {},
     };
   },
   methods: {
+    getInfoUser() {
+      getInfoUser(this);
+    },
     importImg(url) {
       return importImgIcon[url];
     },
@@ -62,6 +76,8 @@ export default {
           return Info;
         case FEEDBACK:
           return Feedback;
+        case PRIVACY:
+          return Privacy;
         default:
           break;
       }
@@ -71,6 +87,11 @@ export default {
     // Profile,
     // Info,
     // Feedback,
+  },
+  created() {
+    if (redirectPage(this, "/login")) {
+      getInfoUser(this);
+    }
   },
 };
 </script>

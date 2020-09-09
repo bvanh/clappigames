@@ -5,7 +5,7 @@ const getNews = (thisObj, path, params) => {
     .get(path, { params })
     .then((response) => {
       thisObj.listNews = response.data.content;
-      console.log(response);
+      // console.log(response);
     })
     .catch((e) => {
       console.log(e.response.data);

@@ -1,4 +1,7 @@
 export default {
+  // login
+  isLogin: (state) => state.isLogin,
+  // games
   games: (state) => state.listGames,
   gameDetail: (state) => (name) =>
     state.listGames.filter((game) => game.shortName === name),
