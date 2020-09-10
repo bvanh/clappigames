@@ -58,7 +58,7 @@ export default {
     },
   },
   created() {
-    console.log(this.games);
+    // console.log(this.games);
   },
 };
 </script>

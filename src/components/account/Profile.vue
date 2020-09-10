@@ -5,7 +5,7 @@
     </div>
     <div class="detail">
       <h3>UserName :</h3>
-      <span>{{userInfo.username}}</span>
+      <span>{{username}}</span>
     </div>
     <div class="detail">
       <h3>UserID :</h3>
@@ -17,6 +17,7 @@
 export default {
   props: {
     userInfo: Object,
+    username: String,
   },
 };
 </script>

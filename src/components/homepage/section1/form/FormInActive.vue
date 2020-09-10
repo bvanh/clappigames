@@ -12,14 +12,13 @@
         </a-input>
       </a-form-item>
       <a-form-item :validate-status="statusPwd.val" :help="statusPwd.help">
-        <a-input
-          type="password"
+        <a-input-password
           v-decorator="['password']"
           placeholder="Mật khẩu"
           @mousedown="resetStatus"
         >
           <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-        </a-input>
+        </a-input-password>
       </a-form-item>
       <a-form-item class="form-control">
         <a class="login-form-forgot" href>Quên mật khẩu?</a>
@@ -33,24 +32,22 @@
     <hr />
     <p class="text-or">Hoặc</p>
     <div class="icon-social">
-      <a-icon type="facebook" class="icon-social-fb" />
-      <facebook-login class="button" :appId="idFb" @login="onSuccessFb"></facebook-login>
+      <a-icon type="facebook" class="icon-social-fb" @click="logInWithFacebook" />
+      <!-- <button class="button" @click="logInWithFacebook">Login with Facebook</button> -->
       <GoogleLogin :params="params" :onSuccess="onSuccessGg" class="btn-gg">
         <a-icon type="google-plus" class="icon-social-gg" />
       </GoogleLogin>
-      <img src="//graph.facebook.com/v8.0/1570164933138420/name" />
     </div>
   </a-col>
 </template>
 <script>
 import { importImgForm } from "../../../../ultils/importImg";
-import { login, ggLogin } from "../../../../ultils/login";
+import { login, socialLogin } from "../../../../ultils/login";
 import { api } from "../../../../api/apiUrl";
 import { validateLogin } from "../../../../ultils/validate";
 import { statusIpDefault, socialId } from "../../../../ultils/valDefault";
 import GoogleLogin from "vue-google-login";
-import facebookLogin from "facebook-login-vuejs";
-const { LOGIN } = api;
+const { LOGIN, LOGIN_FB, LOGIN_GG } = api;
 export default {
   name: "Form",
   props: {
@@ -63,25 +60,49 @@ export default {
       params: {
         client_id: socialId.googleClappiId,
       },
-      idFb: socialId.facebookFakeId,
     };
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
-    onSuccessFb(fbUser) {
-      console.log(fbUser);
-      // window.FB.api("/1570164933138420/", function (response) {
-      //   if (response && !response.error) {
-      //     /* handle the result */
-      //     console.log(response);
-      //   }
-      // });
+    logOut() {
+      window.FB.logout((res) => {
+        console.log(res);
+      });
+    },
+    async logInWithFacebook() {
+      window.FB.login(function (res) {
+        if (res.authResponse) {
+          console.log(res);
+          const { accessToken } = res.authResponse;
+          window.FB.api(
+            "/me",
+            "GET",
+            { fields: "id,name,email,picture" },
+            (user) => {
+              // this.personalID = user.id;
+              // this.email = user.email;
+              // this.name = user.name;
+              // this.picture = user.picture.data.url;
+              socialLogin(this, LOGIN_FB, accessToken);
+              console.log(user);
+            }
+          );
+        } else {
+          console.log("User cancelled login or did not fully authorize.");
+        }
+      });
+      return false;
     },
     onSuccessGg(ggUserIndex) {
       const { id_token } = ggUserIndex.wc;
-      ggLogin(this, id_token);
+      const { $t, iK } = ggUserIndex.rt;
+      const socialIndex = {
+        username: $t,
+        avatar: iK,
+      };
+      socialLogin(this, LOGIN_GG, id_token, socialIndex);
       console.log(ggUserIndex);
     },
     onFailure() {},
@@ -89,8 +110,13 @@ export default {
       e.preventDefault();
       this.form.validateFields((err, values) => {
         const { username, password } = values;
+        const userIndex = {
+          username: username,
+          avatar:
+            "http://5002047-s3user.cloudstorage.com.vn/clappigames/lqmt/CPlcHdroW-avatar.png",
+        };
         if (validateLogin(this, username, password)) {
-          login(this, LOGIN, values, values.username);
+          login(this, LOGIN, values, userIndex);
         }
       });
     },
@@ -104,7 +130,6 @@ export default {
   },
   components: {
     GoogleLogin,
-    facebookLogin,
   },
 };
 </script>

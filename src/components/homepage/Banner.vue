@@ -1,6 +1,6 @@
 <template>
   <div class="banner">
-    <img :src="bn.image" width="100%" />
+    <img :src="printImg(bn)" width="100%" />
   </div>
 </template>
 <script>
@@ -12,6 +12,12 @@ export default {
   methods: {
     importImg(url) {
       return importImg[url];
+    },
+    printImg(img) {
+      if (img) {
+        return img.image;
+      }
+      return "";
     },
   },
 };

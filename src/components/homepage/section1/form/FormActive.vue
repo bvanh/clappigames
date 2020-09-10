@@ -6,7 +6,7 @@
         <img src="../../../../assets/icon/avatar.png" width="100%" />
       </a-col>
       <a-col :span="16" class="info">
-        <h3>{{userInfo.username}}</h3>
+        <h3>{{getUserIndex()}}</h3>
         <span class="user-id">UserID: {{userInfo.fakeId}}</span>
         <p class="user-id">Coin: {{userInfo.coin}}</p>
       </a-col>
@@ -55,6 +55,10 @@ export default {
     logout() {
       this.$store.dispatch("logout");
       cookieService.resetToken();
+    },
+    getUserIndex() {
+      const { username } = cookieService.getToken();
+      return username;
     },
   },
   created() {

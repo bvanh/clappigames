@@ -9,4 +9,5 @@ export default {
   gamesNew: (state) => state.listGames.filter((game) => game.gameNew === 1),
   // banners
   banners: (state) => state.banners,
+  contentAccount: (state) => state.isContentAccount,
 };

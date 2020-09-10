@@ -3,17 +3,17 @@
     <a-icon type="user" />Chào mừng
     <a-dropdown :placement="'bottomRight'">
       <a class="ant-dropdown-link">
-        {{ userInfo.username }}
+        {{ getUserIndex() }}
         <a-icon type="down" />
       </a>
-      <a-menu slot="overlay" @click="onClick">
+      <a-menu slot="overlay">
         <a-menu-item v-for="menu of menus" :key="menu.id" class="menu-item">
           <a-icon :type="menu.icon"></a-icon>
           <router-link :to="menu.link">
             <span>{{menu.name}}</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="2" class="menu-item">
+        <a-menu-item key="5" class="menu-item">
           <a-icon type="logout"></a-icon>
           <span @click="logout">Đăng xuất</span>
         </a-menu-item>
@@ -57,6 +57,10 @@ export default {
       logout() {
       this.$store.dispatch("logout");
       cookieService.resetToken();
+    },
+    getUserIndex() {
+      const { username } = cookieService.getToken();
+      return username;
     },
   },
   created() {
