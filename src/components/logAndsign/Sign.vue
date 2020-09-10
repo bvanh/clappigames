@@ -7,31 +7,46 @@
       <h3 class="form-login-title">ĐĂNG KÝ TÀI KHOẢN</h3>
       <a-form id="normal-login" :form="form" class="form" @submit="handleSubmit">
         <a-form-item :validate-status="statusUser.val" :help="statusUser.help">
-          <a-input v-decorator="['userName']" placeholder="Tài khoản Clappigames">
+          <a-input
+            v-decorator="['username']"
+            placeholder="Tài khoản Clappigames"
+            @mousedown="resetStatus"
+          >
             <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
         <a-form-item :validate-status="statusPwd.val" :help="statusPwd.help">
-          <a-input v-decorator="['password']" type="password" placeholder="Mật khẩu">
+          <a-input-password
+            v-decorator="['password']"
+            placeholder="Mật khẩu"
+            @mousedown="resetStatus"
+          >
             <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
-          </a-input>
+          </a-input-password>
         </a-form-item>
-        <a-form-item :validate-status="statusPhont.val" :help="statusPhone.help">
-          <a-input v-decorator="['phone']" type placeholder="Số điện thoại">
+        <a-form-item :validate-status="statusPhone.val" :help="statusPhone.help">
+          <a-input
+            v-decorator="['phone']"
+            type
+            placeholder="Số điện thoại"
+            @mousedown="resetStatus"
+          >
             <a-icon slot="prefix" class="icon-phone" type="phone" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
         <a-form-item :validate-status="statusMail.val" :help="statusMail.help">
-          <a-input v-decorator="['mail']" type="mail" placeholder="Email">
+          <a-input v-decorator="['mail']" type="mail" placeholder="Email" @mousedown="resetStatus">
             <a-icon slot="prefix" type="mail" style="color: rgba(0,0,0,.25)" />
           </a-input>
         </a-form-item>
+        <a-checkbox @change="onChangeIsAgree" :checked="isAgreePrivacy" class="isAgree" style="margin-bottom:8px">
+          <span :class="[isAgreePrivacy?'':'notIsAgree']">Tôi đồng ý với các thỏa thuận sử dụng.</span>
+        </a-checkbox>
         <a-form-item class="form-control">
-          <a class="login-form-forgot" href>Quên mật khẩu?</a>
-          <a-button type="primary" html-type="submit" class="login-form-button">ĐĂNG NHẬP</a-button>
+          <a-button type="primary" html-type="submit" class="login-form-button">ĐĂNG KÝ</a-button>
           <p style="color:black">
-            Chưa có tài khoản?
-            <a>Đăng ký ngay!</a>
+            Bạn đã có tài khoản?
+            <router-link to="login">Đăng nhập!</router-link>
           </p>
         </a-form-item>
       </a-form>
@@ -46,7 +61,8 @@
 </template>
 <script>
 import { importImg } from "../../ultils/importImg";
-import { validateRegister, statusIpDefault } from "../../ultils/valDefault";
+import { statusIpDefault } from "../../ultils/valDefault";
+import { validateRegister } from "../../ultils/validate";
 import { register } from "../../ultils/register";
 export default {
   data() {
@@ -54,21 +70,25 @@ export default {
       logIndex: {
         id: "form-login",
         title: "ĐĂNG NHẬP TÀI KHOẢN",
-        statusUser: { ...statusIpDefault },
-        statusPwd: { ...statusIpDefault },
-        statusPhone: { ...statusIpDefault },
-        statusMail: { ...statusIpDefault },
       },
+      isAgreePrivacy: true,
+      statusUser: { ...statusIpDefault },
+      statusPwd: { ...statusIpDefault },
+      statusPhone: { ...statusIpDefault },
+      statusMail: { ...statusIpDefault },
     };
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
+    onChangeIsAgree(e) {
+      this.isAgreePrivacy = e.target.checked;
+    },
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
-        const { username, password,mail,phone } = values;
+        const { username, password, mail, phone } = values;
         if (validateRegister(this, username, password, phone, mail)) {
           register(this, values, values.username);
         }
@@ -80,9 +100,11 @@ export default {
     resetStatus() {
       this.statusUser = { ...statusIpDefault };
       this.statusPwd = { ...statusIpDefault };
+      this.statusPhone = { ...statusIpDefault };
+      this.statusMail = { ...statusIpDefault };
     },
   },
 };
 </script>
-
-<style src="../homepage/section1/style/slide.scss" lang="scss"></style>
+<style src="../homepage/section1/style/slide.scss" lang="scss">
+</style>

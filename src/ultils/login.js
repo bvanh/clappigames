@@ -1,12 +1,14 @@
 import { baseLogin } from "../api/baseApi";
+import { api } from "../api/apiUrl";
 import qs from "qs";
 import cookieService from "./cookieService";
 import { gameId } from "./valDefault";
+const { LOGIN_GG } = api;
 const login = (thisObj, path, params, username) => {
   return baseLogin
     .post(path, qs.stringify({ ...params, gameId: gameId }))
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       const { data } = response;
       cookieService.setToken({ ...data, username: username }, data.accessToken);
       thisObj.$store.dispatch("login");
@@ -28,4 +30,17 @@ const login = (thisObj, path, params, username) => {
       }
     });
 };
-export { login };
+const ggLogin = (thisObj, token, username) => {
+  baseLogin
+    .post(LOGIN_GG, qs.stringify({ accessToken: token, gameId: gameId }))
+    .then((res) => {
+      const { data } = res;
+      cookieService.setToken({ ...data, username: username }, data.accessToken);
+      thisObj.$store.dispatch("login");
+      return res;
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+export { login, ggLogin };

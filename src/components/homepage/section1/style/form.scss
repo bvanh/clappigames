@@ -72,6 +72,11 @@
       padding-bottom: 3px;
       color: $icon-fb;
     }
+    .btn-gg{
+      background:transparent;
+      border: 0;
+      cursor: pointer;
+    }
     .icon-social-gg {
       font-size: 30px;
       margin: 0 5px;
@@ -131,6 +136,7 @@
     div {
       padding: 1rem 0;
       border-bottom: 1px solid $border-bt;
+      cursor: pointer;
       i {
         margin-right: 1rem;
       }

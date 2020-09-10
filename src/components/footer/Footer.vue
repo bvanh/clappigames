@@ -47,7 +47,7 @@
 <script>
 import { importImgHeader } from "../../ultils/importImg";
 export default {
-  name: "footer",
+  name: "Bottom",
   data() {
     return {
       listMenuFt: [

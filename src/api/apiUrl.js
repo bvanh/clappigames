@@ -2,8 +2,8 @@ const api = {
   ROOT: "https://test.api.cubegame.vn",
   // login
   LOGIN: "/auth/login",
-  LOGIN_FB: "/facebook",
-  LOGIN_GG: "/google",
+  LOGIN_FB: "/auth/login/facebook",
+  LOGIN_GG: "/auth/login/google",
   // sliders
   SLIDERS: "/sliders",
   // news

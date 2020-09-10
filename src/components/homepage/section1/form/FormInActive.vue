@@ -34,16 +34,21 @@
     <p class="text-or">Hoặc</p>
     <div class="icon-social">
       <a-icon type="facebook" class="icon-social-fb" />
-      <a-icon type="google-plus" class="icon-social-gg" />
+      <facebook-login class="button" :appId="idFb" @login="onSuccessFb"></facebook-login>
+      <GoogleLogin :params="params" :onSuccess="onSuccessGg" class="btn-gg">
+        <a-icon type="google-plus" class="icon-social-gg" />
+      </GoogleLogin>
     </div>
   </a-col>
 </template>
 <script>
 import { importImgForm } from "../../../../ultils/importImg";
-import { login } from "../../../../ultils/login";
+import { login, ggLogin } from "../../../../ultils/login";
 import { api } from "../../../../api/apiUrl";
 import { validateLogin } from "../../../../ultils/validate";
-import { statusIpDefault } from "../../../../ultils/valDefault";
+import { statusIpDefault, socialId } from "../../../../ultils/valDefault";
+import GoogleLogin from "vue-google-login";
+import facebookLogin from "facebook-login-vuejs";
 const { LOGIN } = api;
 export default {
   name: "Form",
@@ -54,12 +59,25 @@ export default {
     return {
       statusUser: statusIpDefault,
       statusPwd: statusIpDefault,
+      params: {
+        client_id: socialId.googleClappiId,
+      },
+      idFb: socialId.facebookFakeId,
     };
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
+    onSuccessFb(fbUser){
+      console.log(fbUser)
+    },
+    onSuccessGg(ggUserIndex) {
+      const { id_token } = ggUserIndex.wc;
+      ggLogin(this, id_token);
+      console.log(ggUserIndex);
+    },
+    onFailure() {},
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
@@ -76,6 +94,10 @@ export default {
       this.statusUser = statusIpDefault;
       this.statusPwd = statusIpDefault;
     },
+  },
+  components: {
+    GoogleLogin,
+    facebookLogin,
   },
 };
 </script>

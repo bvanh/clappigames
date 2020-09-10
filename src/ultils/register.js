@@ -14,17 +14,21 @@ const register = (thisObj, params, username) => {
       return response;
     })
     .catch((error) => {
+      console.log(error.response.data);
       const { status, title, message } = error.response.data;
       const newStatus = {
         val: title.toLowerCase(),
         help: message,
       };
       switch (status) {
-        case 1004:
+        case 1005:
           thisObj.statusUser = newStatus;
           return;
-        default:
+        case 1006:
           thisObj.statusPwd = newStatus;
+          return;
+        default:
+          // thisObj.statusPwd = newStatus;
           return;
       }
     });

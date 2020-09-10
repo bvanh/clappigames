@@ -6,11 +6,7 @@
           <a-icon type="phone" class="icon-phone" />
           <p>Hotline: 1900 1542</p>
         </a-col>
-        <a-col>
-          <a-icon type="import" class="icon-logout" />
-          <router-link to='/login' class="btn-log">Đăng nhập</router-link>|
-          <router-link to='/register' class="btn-log">Đăng ký</router-link>
-        </a-col>
+        <component :is="switchLogin()"></component>
       </a-row>
     </a-row>
     <a-row class="nav-2">
@@ -20,6 +16,8 @@
 </template>
 <script>
 import { importImgHeader } from "../../ultils/importImg";
+import BtnLogin from './BtnLogin'
+import UserControls from './UserControls'
 import Menu from "./Menu";
 export default {
   name: "Header",
@@ -34,6 +32,14 @@ export default {
     },
     importImg(img) {
       return importImgHeader[img];
+    },
+    switchLogin() {
+      switch (this.$store.getters.isLogin) {
+        case true:
+          return UserControls;
+        default:
+          return BtnLogin;
+      }
     },
   },
   components: {

@@ -14,7 +14,9 @@
     <a-col class="menus">
       <div v-for="menu of controls" :key="menu.id">
         <a-icon :type="menu.icon"></a-icon>
-        <router-link :to="menu.link"><span>{{menu.name}}</span></router-link>
+        <router-link :to="menu.link">
+          <span>{{menu.name}}</span>
+        </router-link>
       </div>
       <div @click="logout">
         <a-icon type="logout"></a-icon>
@@ -39,8 +41,8 @@ export default {
         {
           id: 2,
           icon: "profile",
-          link: "/password",
-          name: "Đổi mật khẩu",
+          link: "/account",
+          name: "Bảo mật",
         },
       ],
       userInfo: {},

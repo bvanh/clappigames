@@ -31,6 +31,22 @@ $menu-color: #ffc50e;
           padding: 0 4px;
         }
       }
+      .user-controls {
+        @extend .div-static;
+        i {
+          font-size: 16px;
+          margin-right: 5px;
+        }
+        a{
+          @extend .div-static;
+          color:$menu-color;
+          margin-left: 8px;
+          i{
+            color:white;
+            margin-left:5px;
+          }
+        }
+      }
     }
     img {
       max-width: 20px;
@@ -40,5 +56,22 @@ $menu-color: #ffc50e;
   .nav-2 {
     background: $bg_nav2;
     position: relative;
+  }
+}
+.ant-dropdown-menu {
+  padding: 0 !important;
+  .menu-item {
+    @extend .div-static;
+    justify-content: left;
+    background: $nav-1;
+    color: white;
+    padding: 10px 16px;
+    border-bottom: 1px solid #8f8f8f30;
+    i {
+      font-size: 16px !important;
+    }
+    a {
+      color: white;
+    }
   }
 }
