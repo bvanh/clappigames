@@ -38,7 +38,7 @@
       <GoogleLogin :params="params" :onSuccess="onSuccessGg" class="btn-gg">
         <a-icon type="google-plus" class="icon-social-gg" />
       </GoogleLogin>
-      <img src="//graph.facebook.com/1570164933138420/picture">
+      <img src="//graph.facebook.com/v8.0/1570164933138420/name" />
     </div>
   </a-col>
 </template>
@@ -63,15 +63,21 @@ export default {
       params: {
         client_id: socialId.googleClappiId,
       },
-      idFb: socialId.facebookClappiId,
+      idFb: socialId.facebookFakeId,
     };
   },
   beforeCreate() {
     this.form = this.$form.createForm(this, { name: "normal_login" });
   },
   methods: {
-    onSuccessFb(fbUser){
-      console.log(fbUser)
+    onSuccessFb(fbUser) {
+      console.log(fbUser);
+      // window.FB.api("/1570164933138420/", function (response) {
+      //   if (response && !response.error) {
+      //     /* handle the result */
+      //     console.log(response);
+      //   }
+      // });
     },
     onSuccessGg(ggUserIndex) {
       const { id_token } = ggUserIndex.wc;
