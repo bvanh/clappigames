@@ -34,7 +34,7 @@
     <p class="text-or">Hoặc</p>
     <div class="icon-social">
       <a-icon type="facebook" class="icon-social-fb" />
-      <facebook-login class="button" :appId="idFb" @login="onSuccessFb"></facebook-login>
+      <button class="button" @click="logInWithFacebook"> Login with Facebook</button>
       <GoogleLogin :params="params" :onSuccess="onSuccessGg" class="btn-gg">
         <a-icon type="google-plus" class="icon-social-gg" />
       </GoogleLogin>
@@ -48,7 +48,7 @@ import { api } from "../../../../api/apiUrl";
 import { validateLogin } from "../../../../ultils/validate";
 import { statusIpDefault, socialId } from "../../../../ultils/valDefault";
 import GoogleLogin from "vue-google-login";
-import facebookLogin from "facebook-login-vuejs";
+// import facebookLogin from "facebook-login-vuejs";
 const { LOGIN } = api;
 export default {
   name: "Form",
@@ -94,10 +94,45 @@ export default {
       this.statusUser = statusIpDefault;
       this.statusPwd = statusIpDefault;
     },
+    
+    async logInWithFacebook() {
+      await this.loadFacebookSDK(document, "script", "facebook-jssdk");
+      await this.initFacebook();
+      window.FB.login(function(response) {
+        if (response.authResponse) {
+          alert("You are logged in &amp; cookie set!");
+          // Now you can redirect the user or do an AJAX request to
+          // a PHP script that grabs the signed request from the cookie.
+        } else {
+          alert("User cancelled login or did not fully authorize.");
+        }
+      });
+      return false;
+    },
+    async initFacebook() {
+      window.fbAsyncInit = function() {
+        window.FB.init({
+          appId: "630380541117442", //You will need to change this
+          cookie: true, // This is important, it's not enabled by default
+          version: "v13.0"
+        });
+      };
+    },
+    async loadFacebookSDK(d, s, id) {
+      var js,
+        fjs = d.getElementsByTagName(s)[0];
+      if (d.getElementById(id)) {
+        return;
+      }
+      js = d.createElement(s);
+      js.id = id;
+      js.src = "https://connect.facebook.net/en_US/sdk.js";
+      fjs.parentNode.insertBefore(js, fjs);
+    } 
   },
   components: {
     GoogleLogin,
-    facebookLogin,
+    // facebookLogin,
   },
 };
 </script>
