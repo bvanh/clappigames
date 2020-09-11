@@ -5,6 +5,9 @@ const cookieService = {
     Vue.$cookies.set("tokenClappi", token, { expires: 60, secure: true });
     Vue.$cookies.set("accessTokenClappi", accessToken, { secure: true });
   },
+  setAccessToken(token) {
+    Vue.$cookies.set("accessTokenClappi", token, { secure: true });
+  },
   getAccessToken: () => {
     return Vue.$cookies.get("accessTokenClappi");
   },

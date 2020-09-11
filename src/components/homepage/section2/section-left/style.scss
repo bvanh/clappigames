@@ -187,6 +187,25 @@
       }
     }
   }
+  .pagination {
+    width: 100%;
+    text-align: center;
+    margin: 1rem 0 0;
+    .ant-pagination-item:focus, .ant-pagination-item:hover a{
+      color: $btn-color;
+    }
+    .ant-pagination-item-active {
+      border-color: $btn-color;
+      background: $btn-color;
+      border-radius: 100%;
+      a{
+        color:white;
+      }
+    }
+  }
+  .home-news-pagination{
+    display: none;
+  }
 }
 .page-news {
   margin: 0;

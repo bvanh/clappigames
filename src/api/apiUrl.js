@@ -20,7 +20,7 @@ const api = {
   UPDATE_USER_PWD: "/users/update/password",
   REGISTER_USER: "/auth/register",
   // token
-  REFRESH_TOKEN: "/auth/token/refresh",
+  REFRESH_TOKEN: "/auth/token",
 };
 const type = {
   news: {

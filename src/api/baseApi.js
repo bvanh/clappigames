@@ -1,11 +1,26 @@
 import axios from "axios";
 import cookieService from "../ultils/cookieService";
 import { api } from "./apiUrl";
-import qs from 'qs'
+// import qs from "qs";
 // refreshToken
 const refreshToken = axios.create({
   baseURL: api.ROOT,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
 });
+refreshToken.interceptors.request.use(
+  (config) => {
+    const token = cookieService.getToken();
+    if (token) {
+      config.headers["Authorization"] = "Bearer " + token.refreshToken;
+      return config;
+    }
+  },
+  (error) => {
+    return error;
+  }
+);
 const baseApi = axios.create({
   baseURL: api.ROOT,
   headers: {
@@ -55,18 +70,16 @@ baseGetInfoUser.interceptors.response.use(
   },
   function(error) {
     const originalRequest = error.response.config;
-    if (error.response.status !== 403) {
+    if (error.response.status !== 401) {
       // console.log(error.response);
       return Promise.reject(error);
     }
-    const tokenClappi = cookieService.getToken();
     return refreshToken
-      .post(api.REFRESH_TOKEN, qs.stringify({
-        refreshToken: tokenClappi.refreshToken,
-      }))
+      .post(api.REFRESH_TOKEN)
       .then((response) => {
+        console.log(response);
         const { accessToken } = response.data;
-        cookieService.set("accessTokenClappi", accessToken);
+        cookieService.setAccessToken("accessTokenClappi", accessToken);
         originalRequest.headers["Authorization"] = "Bearer " + accessToken;
         return axios(originalRequest);
       })

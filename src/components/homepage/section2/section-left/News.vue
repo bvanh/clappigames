@@ -28,7 +28,11 @@
         class="news"
       >
         <a-row :gutter="12">
-          <a-col :span="colNews[0]" class="thumbnail" :style="{backgroundImage:`url(${news.image})`}"></a-col>
+          <a-col
+            :span="colNews[0]"
+            class="thumbnail"
+            :style="{backgroundImage:`url(${news.image})`}"
+          ></a-col>
           <a-col :span="colNews[1]" class="news-info">
             <h4>
               <router-link :to="`/news/detail/${news.newsId}`">{{news.subject}}</router-link>
@@ -40,6 +44,9 @@
           </a-col>
         </a-row>
       </a-col>
+      <div :class="`pagination ${isPage}-pagination`">
+        <a-pagination size="small" :total="totalNews" @change="getPageNumber" />
+      </div>
     </a-row>
   </div>
 </template>
@@ -58,18 +65,19 @@ export default {
   props: {
     games: Array,
     spanNews: Number,
-    colNews:Array,
+    colNews: Array,
     isPage: String,
-    pageCount:Number
+    pageCount: Number,
   },
   data() {
     return {
       isActiveMenu: 1,
       listNews: [],
-      type: null,
+      totalNews: null,
       params: {
-        pageSize: 10,
+        type: null,
         count: this.pageCount,
+        page: 0,
       },
       menus: [
         {
@@ -108,20 +116,25 @@ export default {
     },
     setActiveMenu(id, type) {
       this.isActiveMenu = id;
-      this.type = `/${type}`;
+      this.params.type = `/${type}`;
+    },
+    getPageNumber(val) {
+      this.params = { ...this.params, page: val - 1 };
     },
     formatDate: formatDate,
   },
   watch: {
-    type: {
+    params: {
       deep: true,
       handler() {
-        getNews(this, NEWS_ALL + this.type, this.params);
+        const { type, count, page } = this.params;
+        const newParams = { count: count, page: page };
+        getNews(this, NEWS_ALL + type, newParams);
       },
     },
   },
   created() {
-    this.type = "/all";
+    this.params.type = "/all";
   },
 };
 </script>

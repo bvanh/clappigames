@@ -5,12 +5,12 @@
     </div>
     <div class="detail">
       <h3>Họ và Tên :</h3>
-      <a-input :value="nickname" name="nickname" @change="getInfoUser" />
+      <a-input :value="userInfo.nickname" name="nickname" @change="getInfoUser" />
     </div>
     <div class="detail">
       <h3>Ngày sinh :</h3>
       <a-date-picker
-        :value="formatDate(dateOfBirth)"
+        :value="formatDate(userInfo.dateOfBirth)"
         :format="dateFormat"
         class="select-birth"
         @change="getDateOfBirth"
@@ -19,41 +19,50 @@
     <div class="detail id-card">
       <h3>CMND :</h3>
       <div style="width:100%">
-        <a-input :value="identifyCard" style="width:30%" name="identifyCard" @change="getInfoUser" />
+        <a-input
+          :value="userInfo.identifyCard"
+          style="width:30%"
+          name="identifyCard"
+          @change="getInfoUser"
+        />
         <h3>Ngày DK :</h3>
         <a-date-picker
-          :value="formatDate(dateOfIssue)"
+          :value="formatDate(userInfo.dateOfIssue)"
           @change="getDateOfIssue"
           :format="dateFormat"
           class="date"
         />
         <h3>Nơi cấp :</h3>
-        <a-input :value="placeOfIssue" style="width:25%" name="placeOfIssue" @change="getInfoUser" />
+        <a-input
+          :value="userInfo.placeOfIssue"
+          style="width:25%"
+          name="placeOfIssue"
+          @change="getInfoUser"
+        />
       </div>
     </div>
     <div class="detail">
       <h3>Giới tính :</h3>
-      <a-radio-group :options="options" @change="getGender" :value="gender" />
+      <a-radio-group :options="options" @change="getGender" :value="userInfo.gender" />
     </div>
     <div class="detail">
       <h3>Nghề nghiệp :</h3>
-      <a-input :value="job" name="job" @change="getInfoUser" />
+      <a-input :value="userInfo.job" name="job" @change="getInfoUser" />
     </div>
     <div class="detail">
       <h3>Địa chỉ:</h3>
-      <a-input :value="address" name="address" @change="getInfoUser" />
+      <a-input :value="userInfo.address" name="address" @change="getInfoUser" />
     </div>
     <button class="btn-submit" @click="updateInfo">Cập nhật</button>
   </div>
 </template>
 <script>
 // import {formatDate} from '../../ultils/format'
-import { updateInfoUser } from "../../ultils/getData/user";
+import { updateInfoUser, getInfoUser } from "../../ultils/getData/user";
 import moment from "moment";
 export default {
   props: {
-    userInfo: Object,
-    getInfo:Function
+    getInfo: Function,
   },
   data() {
     return {
@@ -63,7 +72,7 @@ export default {
         { label: "Nữ", value: "FEMALE" },
         { label: "Khác", value: "OTHER" },
       ],
-      ...this.userInfo,
+      userInfo: {},
     };
   },
   methods: {
@@ -92,6 +101,9 @@ export default {
       updateInfoUser(this);
     },
     moment,
+  },
+  created() {
+    getInfoUser(this);
   },
 };
 </script>

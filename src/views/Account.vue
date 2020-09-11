@@ -77,10 +77,10 @@ export default {
     menuActive(name) {
       return this.$store.getters.contentAccount === name;
     },
-     logout() {
+    logout() {
       this.$store.dispatch("logout");
       cookieService.resetToken();
-      this.$router.push('/')
+      this.$router.push("/");
     },
   },
   computed: {

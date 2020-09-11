@@ -26,7 +26,7 @@ export default {
       span: 6,
       spanNews: 24,
       colNews: [8, 16],
-      pageCount: 10,
+      pageCount: 8,
     };
   },
   computed: {

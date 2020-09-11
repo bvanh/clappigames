@@ -50,6 +50,8 @@ export default {
   name: "Bottom",
   data() {
     return {
+      isAccountMenu: this.$store.getters.contentAccount,
+      isPageAccount: false,
       listMenuFt: [
         {
           id: 2,
@@ -74,11 +76,22 @@ export default {
       ],
     };
   },
+  watch: {
+    isAccountMenu: {
+      deep: true,
+      handler() {
+        this.isPageAccount = true;
+      },
+    },
+  },
   methods: {
     importHeader(img) {
       return importImgHeader[img];
     },
   },
+  // created(){
+  //   console.log(this.$route.fullPath)
+  // }
 };
 </script>
 <style src='./style.scss' lang='scss' scoped>

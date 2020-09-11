@@ -103,7 +103,7 @@ export default {
         avatar: iK,
       };
       socialLogin(this, LOGIN_GG, id_token, socialIndex);
-      console.log(ggUserIndex);
+      // console.log(ggUserIndex);
     },
     onFailure() {},
     handleSubmit(e) {

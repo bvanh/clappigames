@@ -7,7 +7,7 @@
         <a-icon type="down" />
       </a>
       <a-menu slot="overlay">
-        <a-menu-item v-for="menu of menus" :key="menu.id" class="menu-item">
+        <a-menu-item v-for="menu of menus" :key="menu.id" class="menu-item" @click="setMenuControls(menu.menu)">
           <a-icon :type="menu.icon"></a-icon>
           <router-link :to="menu.link">
             <span>{{menu.name}}</span>
@@ -26,41 +26,55 @@
 <script>
 import { getInfoUser } from "../../ultils/getData/user";
 import cookieService from "../../ultils/cookieService";
+import { controlsAccount } from "../account/services";
+const { PROFILE, INFO, PRIVACY, FEEDBACK } = controlsAccount;
 export default {
   data() {
     return {
       userInfo: {},
       menus: [
-        { id: 1, icon: "user", link: "/account", name: "Tài khoản" },
+        {
+          id: 1,
+          icon: "user",
+          link: "/account",
+          name: "Tài khoản",
+          menu: PROFILE,
+        },
         {
           id: 2,
           icon: "profile",
           link: "/account",
           name: "Thông tin cá nhân",
+          menu: INFO,
         },
         {
           id: 3,
           icon: "lock",
           link: "/account",
           name: "Bảo mật",
+          menu: PRIVACY,
         },
         {
           id: 4,
           icon: "gift",
           link: "/account",
           name: "Phản hồi",
+          menu: FEEDBACK,
         },
       ],
     };
   },
-  methods:{
-      logout() {
+  methods: {
+    logout() {
       this.$store.dispatch("logout");
       cookieService.resetToken();
     },
     getUserIndex() {
       const { username } = cookieService.getToken();
       return username;
+    },
+    setMenuControls(type) {
+      this.$store.dispatch("setContentAccount", type);
     },
   },
   created() {
