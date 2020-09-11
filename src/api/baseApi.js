@@ -79,7 +79,7 @@ baseGetInfoUser.interceptors.response.use(
       .then((response) => {
         console.log(response);
         const { accessToken } = response.data;
-        cookieService.setAccessToken("accessTokenClappi", accessToken);
+        cookieService.setAccessToken(accessToken);
         originalRequest.headers["Authorization"] = "Bearer " + accessToken;
         return axios(originalRequest);
       })
