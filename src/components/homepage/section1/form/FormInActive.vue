@@ -90,12 +90,8 @@ export default {
                 username: name,
                 avatar: picture.data.url,
               };
-              // this.personalID = user.id;
-              // this.email = user.email;
-              // this.name = user.name;
-              // this.picture = user.picture.data.url;
               socialLogin(this, LOGIN_FB, accessToken, socialIndex);
-              console.log(user);
+              // console.log(user);
             }
           );
         } else {

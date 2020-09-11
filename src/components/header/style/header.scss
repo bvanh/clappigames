@@ -14,6 +14,9 @@ $menu-color: #ffc50e;
       @extend .maxWidth;
       height: 100%;
       padding: 0.5rem 0;
+      @include mobile-xs{
+        justify-content: flex-end;
+      }
       .ant-col {
         @extend .div-static;
         color: white;
@@ -45,6 +48,11 @@ $menu-color: #ffc50e;
             color:white;
             margin-left:5px;
           }
+        }
+      }
+      .hotline{
+        @include mobile-xs{
+          display: none;
         }
       }
     }

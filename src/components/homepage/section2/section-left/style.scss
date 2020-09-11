@@ -220,10 +220,11 @@ iframe {
   width: 100%;
   margin-top: 2rem;
   border-radius: $radius;
-  span,
-  iframe {
-    width: 100% !important;
-  }
+  height: 210px;
+  // span,
+  // // iframe {
+  // //   width: 100% !important;
+  // // }
 }
 .section-right {
   padding: 0 !important;

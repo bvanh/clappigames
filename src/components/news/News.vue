@@ -1,6 +1,6 @@
 <template>
   <a-row class="frame-1" :gutter="40">
-    <a-col :span="16" class="section-left">
+    <a-col :span="24" :lg="{span:16}" class="section-left">
       <News :spanNews="spanNews" :colNews="colNews" :pageCount="pageCount" :isPage="'page-news'" />
     </a-col>
     <a-col :span="8" class="section-right" style="padding:0">
@@ -46,5 +46,5 @@ export default {
 };
 </script>
 
-<style>
+<style src='./style.scss' lang='scss' scoped>
 </style>

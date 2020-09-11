@@ -1,5 +1,5 @@
 <template>
-  <div class="footer">
+  <div :class="[isPageAccount?'footer account-ft':'footer']">
     <a-row type="flex" justify="space-between" class="container">
       <a-col class="footer-info" :lg="{ span: 16,order:2 }" :order="2">
         <p>Công ty trách nghiệm hữu hạn Lussom Co.Ltd.</p>
@@ -77,10 +77,14 @@ export default {
     };
   },
   watch: {
-    isAccountMenu: {
+    $route: {
       deep: true,
       handler() {
-        this.isPageAccount = true;
+        if (this.$route.fullPath === "/account") {
+          this.isPageAccount = true;
+          return
+        }
+        this.isPageAccount=false;
       },
     },
   },

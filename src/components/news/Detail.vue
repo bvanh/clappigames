@@ -16,11 +16,14 @@
               <img :src="importIcon(menu.icon2)" class="dots" />
             </a>
           </div>
-          <h3 class="title-news">{{news.subject}}</h3>
+          <h3 class="title-news">{{printSubject(news)}}</h3>
         </div>
         <div class="content">
-          <h3>{{news.subject}}</h3>
-          <p><a-icon type="clock-circle" />{{formatDate(news.createAt)}}</p>
+          <h3>{{printSubject(news)}}</h3>
+          <p>
+            <a-icon type="clock-circle" />
+            {{formatDate(news.createAt)}}
+          </p>
           <vue-markdown>{{news.content}}</vue-markdown>
         </div>
       </div>
@@ -37,7 +40,7 @@ import Category from "../homepage/section2/section-right/Category";
 import Banner from "../homepage/Banner";
 import Fb from "../homepage/Fb";
 import VueMarkdown from "vue-markdown";
-import {formatDate} from '../../ultils/format'
+import { formatDate } from "../../ultils/format";
 import { importImgIcon } from "../../ultils/importImg";
 import { getNewsDetail } from "../../ultils/getData/news";
 import { api } from "../../api/apiUrl";
@@ -81,7 +84,13 @@ export default {
     setActiveMenu(id) {
       this.isActiveMenu = id;
     },
-    formatDate:formatDate
+    printSubject(content) {
+      if (content) {
+        return content.subject;
+      }
+      return "";
+    },
+    formatDate: formatDate,
   },
   created() {
     const newsId = this.$route.params.id;

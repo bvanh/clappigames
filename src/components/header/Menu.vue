@@ -13,7 +13,9 @@
     <a-icon type="menu" @click="showMenu" class="icon-menu" />
     <div :class="[isActiveMenu?'menu-mobile-active':'menu-mobile']">
       <a-icon type="close" class="close-menu" @click="showMenu" />
-      <router-link v-for="menu of menus" :key="menu.id" :to="menu.href"><span @click="showMenu">{{menu.name}}</span></router-link>
+      <router-link v-for="menu of addMenuMobile()" :key="menu.id" :to="menu.href">
+        <span @click="showMenu">{{menu.name}}</span>
+      </router-link>
       <a href="https://nap.clappigames.com/" target="_blank" class="btn-pay">
         NẠP TIỀN
         <img :src="importImg('icon_pay.png')" />
@@ -22,7 +24,6 @@
     <div :class="[isActiveMenu?'menu-mask':'']" style="display:none" @click="showMenu"></div>
   </a-row>
 </template>
-
 <script>
 import { importImgHeader } from "../../ultils/importImg";
 export default {
@@ -52,7 +53,21 @@ export default {
   methods: {
     showMenu() {
       this.isActiveMenu = !this.isActiveMenu;
-      console.log('fs')
+    },
+    addMenuMobile() {
+      const newMenus = [
+        {
+          id: 5,
+          name: "ĐĂNG NHẬP",
+          href: "/login",
+        },
+        {
+          id: 4,
+          name: "ĐĂNG KÝ",
+          href: "/register",
+        },
+      ];
+      return [...this.menus, ...newMenus];
     },
     importImg(img) {
       return importImgHeader[img];
