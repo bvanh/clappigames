@@ -14,7 +14,7 @@
           <img :src="importIcon(menu.icon2)" class="dots" />
         </a>
       </div>
-      <router-link to="/news" class="title-see-all">
+      <router-link to="/news" class="title-see-all" v-show="isPage!=='page-news'">
         Xem thêm
         <a-icon type="forward" />
       </router-link>
