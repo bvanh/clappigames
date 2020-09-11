@@ -7,15 +7,22 @@
         <a-icon type="down" />
       </a>
       <a-menu slot="overlay">
-        <a-menu-item v-for="menu of menus" :key="menu.id" class="menu-item" @click="setMenuControls(menu.menu)">
+        <a-menu-item
+          v-for="menu of menus"
+          :key="menu.id"
+          class="menu-item"
+          @click="setMenuControls(menu.menu)"
+        >
           <a-icon :type="menu.icon"></a-icon>
           <router-link :to="menu.link">
             <span>{{menu.name}}</span>
           </router-link>
         </a-menu-item>
-        <a-menu-item key="5" class="menu-item">
+        <a-menu-item key="5" class="menu-item" @click="logout">
           <a-icon type="logout"></a-icon>
-          <span @click="logout">Đăng xuất</span>
+          <router-link to="/">
+            <span>Đăng xuất</span>
+          </router-link>
         </a-menu-item>
       </a-menu>
     </a-dropdown>

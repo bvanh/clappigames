@@ -14,12 +14,12 @@
     </div>
     <a-row :gutter="24" type="flex">
       <a-col :span="8" v-for="game of gamesHot()" :key="game.id" class="game-info">
-        <img :src="game.avatar" class="game-avatar" />
+        <router-link :to="`/games/${game.shortName}`"><img :src="game.avatar" class="game-avatar" /></router-link>
         <h3 class="game-fullname">{{game.fullName}}</h3>
         <div>{{game.category}}</div>
       </a-col>
     </a-row>
-    <button class="btn-read-more">Xem thêm</button>
+    <button class="btn-read-more"><router-link to='/games' style="color:black">Xem thêm</router-link></button>
   </div>
 </template>
 <script>

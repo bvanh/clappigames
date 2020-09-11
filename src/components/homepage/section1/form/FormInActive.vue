@@ -1,6 +1,6 @@
 <template>
-  <a-col :span="24" :lg="{span:8}" :class="`form-container ${log.id}`">
-    <h3 :class="`${log.id}-title`">{{log.title}}</h3>
+  <a-col :span="24" :lg="{ span: 8 }" :class="`form-container ${log.id}`">
+    <h3 :class="`${log.id}-title`">{{ log.title }}</h3>
     <a-form id="normal-login" :form="form" class="form" @submit="handleSubmit">
       <a-form-item :validate-status="statusUser.val" :help="statusUser.help">
         <a-input
@@ -60,6 +60,7 @@ export default {
       params: {
         client_id: socialId.googleClappiId,
       },
+      fb: window.FB,
     };
   },
   beforeCreate() {
@@ -71,21 +72,29 @@ export default {
         console.log(res);
       });
     },
+    loginFb() {
+      this.$store.dispatch("login");
+    },
     async logInWithFacebook() {
-      window.FB.login(function (res) {
+      this.fb.login((res) => {
         if (res.authResponse) {
           console.log(res);
           const { accessToken } = res.authResponse;
-          window.FB.api(
+          this.fb.api(
             "/me",
             "GET",
             { fields: "id,name,email,picture" },
             (user) => {
+              const { name, picture } = user;
+              const socialIndex = {
+                username: name,
+                avatar: picture.data.url,
+              };
               // this.personalID = user.id;
               // this.email = user.email;
               // this.name = user.name;
               // this.picture = user.picture.data.url;
-              socialLogin(this, LOGIN_FB, accessToken);
+              socialLogin(this, LOGIN_FB, accessToken, socialIndex);
               console.log(user);
             }
           );
@@ -102,7 +111,7 @@ export default {
         username: $t,
         avatar: iK,
       };
-      socialLogin(this, LOGIN_GG, id_token, socialIndex);
+      socialLogin(this,LOGIN_GG, id_token, socialIndex);
       // console.log(ggUserIndex);
     },
     onFailure() {},
@@ -133,5 +142,4 @@ export default {
   },
 };
 </script>
-<style src='../style/form.scss' lang='scss'>
-</style>
+<style src="../style/form.scss" lang="scss"></style>

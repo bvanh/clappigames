@@ -2,6 +2,7 @@ import { baseLogin } from "../api/baseApi";
 import qs from "qs";
 import cookieService from "./cookieService";
 import { gameId } from "./valDefault";
+
 const login = (thisObj, path, params, userIndex) => {
   return baseLogin
     .post(path, qs.stringify({ ...params, gameId: gameId }))
@@ -29,7 +30,7 @@ const login = (thisObj, path, params, userIndex) => {
     });
 };
 const socialLogin = (thisObj, path, token, socialIndex) => {
-  baseLogin
+ return baseLogin
     .post(path, qs.stringify({ accessToken: token, gameId: gameId }))
     .then((res) => {
       const { data } = res;
@@ -38,6 +39,7 @@ const socialLogin = (thisObj, path, token, socialIndex) => {
       return res;
     })
     .catch((err) => {
+      console.log(thisObj)
       console.log(err.response);
     });
 };
