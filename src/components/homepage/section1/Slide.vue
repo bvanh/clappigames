@@ -19,7 +19,6 @@
 import { Hooper, Slide, Pagination as HooperPagination } from "hooper";
 import { getSliders } from "../../../ultils/getData/sliders";
 import { api, type } from "../../../api/apiUrl";
-import { importImgSlider } from "../../../ultils/importImg";
 import "hooper/dist/hooper.css";
 const { HOME } = type.sliders;
 const { SLIDERS } = api;
@@ -40,9 +39,6 @@ export default {
     },
   },
   methods: {
-    importImg(url) {
-      return importImgSlider[url];
-    },
     slidePrev() {
       this.$refs.carousel.slidePrev();
     },
