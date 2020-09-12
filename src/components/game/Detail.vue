@@ -1,17 +1,21 @@
 <template>
   <div class="game-detail">
-    <img src="../../assets/games/banner.png" width="100%" class="game-banner" />
+    <img :src="getGameDetail.backgroundImg" width="100%" class="game-banner" />
     <div class="menu">
       <div>
         <span>
-          <img :src="importImg('icon_game.png')" />
-          <h3>3Q Phản Công</h3>
+          <img :src="getGameDetail.avatar" />
+          <h3>{{getGameDetail.fullName}}</h3>
         </span>
-        <router-link to="/">Trang chủ</router-link>
+        <a :href="getGameDetail.landingPage" target="_blank" id="homepage">Trang chủ</a>
         <img :src="importIcon('icon_dots.png')" />
-        <a href="https://www.facebook.com/3QZVN/" target="_blank" id="fanpage">Fanpage</a>
-        <img :src="importImg('android.png')" class="img-download" />
-        <img :src="importImg('ios.png')" class="img-download" />
+        <a :href="getGameDetail.fanpage" target="_blank" id="fanpage">Fanpage</a>
+        <a :href="getGameDetail.googleStoreDownload" target="_blank" class="btn-download">
+          <img :src="importImg('android.png')" class="img-download" />
+        </a>
+        <a :href="getGameDetail.appStoreDownload" target="_blank" class="btn-download">
+          <img :src="importImg('ios.png')" class="img-download" />
+        </a>
       </div>
     </div>
     <a-row class="frame-1" :gutter="40">
@@ -74,7 +78,7 @@ export default {
     },
     getGameDetail() {
       const gameDetail = this.$store.getters.gameDetail(this.$route.params.id);
-      // console.log(gameDetail);
+      console.log(gameDetail);
       return gameDetail[0];
     },
     getBanners() {

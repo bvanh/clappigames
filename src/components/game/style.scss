@@ -11,34 +11,29 @@
       @extend .div-static;
       justify-content: left;
       padding: 10px 0;
+      position: relative;
       span {
-        position: relative;
-        width: 9rem;
+        @extend .div-static;
+        position: absolute;
+        bottom: 26px;
+        // width: 9rem;
         @include mobile-xs {
-          position: absolute;
+          bottom: 44px;
         }
         img {
-          position: absolute;
-          bottom: 0;
-          left: 0;
+          padding: 0;
           @include mobile-xs {
-            bottom: 1.4rem;
+            width: 30%;
           }
         }
         h3 {
           @extend .font-static;
-          position: absolute;
-          top: -5.5rem;
-          left: 7.5rem;
+          margin-left: 8px !important;
           color: white;
-          width: 200%;
           font-size: 2.2rem;
           font-weight: bold;
           @include mobile-xs {
-            top: -5.5rem;
-            left: 4.5rem;
             font-size: 1.5rem;
-            width: 195%;
           }
         }
       }
@@ -49,13 +44,24 @@
         color: black;
         margin: 0 11px;
       }
-      img {
-        padding: 0 0.5rem;
+      #homepage {
+        margin-left: 150px;
+        @include mobile-xs {
+          font-size: 14px !important;
+          margin: 0;
+        }
       }
-      .img-download {
+      .btn-download {
+        @include mobile{
+          width:16%;
+        }
         @include mobile-xs {
           width: 30%;
         }
+        // width: 30%;
+      }
+      img {
+        padding: 0 0.5rem;
       }
       #fanpage {
         @include mobile-xs {

@@ -11,9 +11,6 @@ const importImg = importAll(
 const importImgHeader = importAll(
   require.context("../assets/header", false, /\.(png|jpe?g|svg)$/)
 );
-const importImgSlider = importAll(
-  require.context("../assets/slider", false, /\.(png|jpe?g|svg)$/)
-);
 const importImgIcon = importAll(
   require.context("../assets/icon", false, /\.(png|jpe?g|svg)$/)
 );
@@ -23,7 +20,6 @@ const importImgGames = importAll(
 export {
   importImg,
   importImgHeader,
-  importImgSlider,
   importImgIcon,
   importImgGames,
 };
