@@ -62,7 +62,7 @@
     .username {
       @extend .div-static;
       justify-content: left;
-      margin-bottom: 1rem;
+      margin: 0.5rem 0 1rem 2.4rem;
       img {
         width: 30px;
         margin-right: 9px;
@@ -82,7 +82,7 @@
     .title-2 {
       // @extend
       text-align: left;
-      margin:0 0 .5rem 2.4rem;
+      margin: 0 0 0.5rem 2.4rem;
     }
     .verify-email {
       padding-top: 0.5rem;
@@ -123,22 +123,28 @@
         width: 100%;
         text-align: left;
       }
-      label {
-        display: flex;
-        align-items: center;
-        .btn-upload {
-          @extend .div-static;
-          justify-content: space-around;
-          width: 6rem;
-          background: #1a80b6;
-          height: 2.1rem;
-          padding: 0.7rem;
-          border-radius: 20px;
+      .upload {
+        @extend .div-static;
+        justify-content: right;
+      }
+      .btn-upload {
+        @extend .div-static;
+        justify-content: space-around;
+        width: 6rem;
+        background: #1a80b6;
+        height: 2.1rem;
+        padding: 0.7rem;
+        border-radius: 20px;
+        color: white;
+        i {
           color: white;
         }
       }
+      .upload-active {
+        pointer-events: none;
+      }
     }
-    .detail-input{
+    .detail-input {
       @extend .detail;
       margin: 0rem 0 0rem 2.4rem;
     }
@@ -199,7 +205,7 @@
     .detail-feedback {
       @extend .div-static;
       align-items: end;
-      padding-bottom: 1.3rem;
+      padding: 0.7rem 0;
       border-bottom: 1px solid $border-bt;
       i {
         font-size: 2rem;
@@ -216,6 +222,23 @@
         h2 {
           font-size: 20px;
           cursor: pointer;
+        }
+      }
+    }
+    .pagination {
+      width: 100%;
+      text-align: center;
+      margin: 1rem 0 0;
+      .ant-pagination-item:focus,
+      .ant-pagination-item:hover a {
+        color: $btn-color;
+      }
+      .ant-pagination-item-active {
+        border-color: $btn-color;
+        background: $btn-color;
+        border-radius: 100%;
+        a {
+          color: white;
         }
       }
     }

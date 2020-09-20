@@ -2,7 +2,7 @@ import { baseGetInfoUser } from "../../api/baseApi";
 import { api } from "../../api/apiUrl";
 import qs from "qs";
 // import cookieService from "../cookieService";
-const { UPDATE_USER, GET_INFO, UPDATE_USER_PWD } = api;
+const { UPDATE_USER, GET_INFO, UPDATE_USER_PWD, GET_FEEDBACKS } = api;
 const getInfoUser = (thisObj) => {
   //   const token = cookieService.getToken();
   baseGetInfoUser
@@ -10,6 +10,35 @@ const getInfoUser = (thisObj) => {
     .then((response) => {
       thisObj.userInfo = response.data;
       return response;
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+const getFeedbacks = (thisObj, paramsFeedbacks) => {
+  const { page, count } = paramsFeedbacks;
+  const params = {
+    page: page,
+    count: count,
+  };
+  baseGetInfoUser
+    .get(GET_FEEDBACKS, { params })
+
+    .then((response) => {
+      console.log(response);
+      thisObj.feedbacks = response.data;
+      return response;
+    })
+    .catch((err) => {
+      console.log(err.response);
+    });
+};
+const getFeedbackDetail = (thisObj, detailId) => {
+  baseGetInfoUser
+    .get(GET_FEEDBACKS + detailId)
+    .then((res) => {
+      console.log(res);
+      thisObj.detail = res.data;
     })
     .catch((err) => {
       console.log(err.response);
@@ -73,4 +102,10 @@ const updatePassword = (thisObj, oldPass, newPass) => {
       return;
     });
 };
-export { getInfoUser, updateInfoUser, updatePassword };
+export {
+  getInfoUser,
+  updateInfoUser,
+  updatePassword,
+  getFeedbacks,
+  getFeedbackDetail,
+};

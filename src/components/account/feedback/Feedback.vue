@@ -1,5 +1,14 @@
 <template>
-  <component :is="setContentFeedback(isContentFb)" :switchFeedback="switchFeedback"></component>
+  <keep-alive>
+    <component
+      :is="setContentFeedback(isContentFb)"
+      :switchFeedback="switchFeedback"
+      :feedbacks="feedbacks"
+      :setPageNumFeedback="setPageNumFeedback"
+      :refreshFeedbacks="refreshFeedbacks"
+      :detailId="detailId"
+    ></component>
+  </keep-alive>
 </template>
 <script>
 import Detail from "./Detail";
@@ -8,15 +17,21 @@ import ListFeedback from "./ListFeedback";
 import { controlsFeedback } from "../services";
 const { DETAIL, SEND, OVERVIEW } = controlsFeedback;
 export default {
+  props: {
+    feedbacks: Object,
+    setPageNumFeedback: Function,
+    refreshFeedbacks: Function,
+  },
   data() {
     return {
       isContentFb: OVERVIEW,
+      detailId: null,
     };
   },
   methods: {
-    switchFeedback(type) {
+    switchFeedback(type, detailId) {
       this.isContentFb = type;
-      console.log(type)
+      this.detailId = detailId;
     },
     setContentFeedback(type) {
       switch (type) {

@@ -1,5 +1,9 @@
 const api = {
   ROOT: "https://test.api.cubegame.vn",
+  // upload img feedbacks
+  ROOT_UPLOAD: "http://localhost:3002",
+  UPLOAD: "/upload",
+  DELETE: "/delete",
   // login
   LOGIN: "/auth/login",
   LOGIN_FB: "/auth/login/facebook",
@@ -21,6 +25,9 @@ const api = {
   REGISTER_USER: "/auth/register",
   // token
   REFRESH_TOKEN: "/auth/token",
+  // feedbacks
+  SEND_FEEDBACKS: "/feedbacks/post",
+  GET_FEEDBACKS:"/feedbacks",
 };
 const type = {
   news: {

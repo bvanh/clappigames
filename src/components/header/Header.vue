@@ -16,8 +16,9 @@
 </template>
 <script>
 import { importImgHeader } from "../../ultils/importImg";
-import BtnLogin from './BtnLogin'
-import UserControls from './UserControls'
+import cookieService from "../../ultils/cookieService";
+import BtnLogin from "./BtnLogin";
+import UserControls from "./UserControls";
 import Menu from "./Menu";
 export default {
   name: "Header",
@@ -44,6 +45,11 @@ export default {
   },
   components: {
     Menu,
+  },
+  created() {
+    if (cookieService.getToken()) {
+      this.$store.dispatch("login");
+    }
   },
 };
 </script>

@@ -1,8 +1,6 @@
 import axios from "axios";
 import cookieService from "../ultils/cookieService";
 import { api } from "./apiUrl";
-// import qs from "qs";
-// refreshToken
 const refreshToken = axios.create({
   baseURL: api.ROOT,
   headers: {
@@ -21,6 +19,12 @@ refreshToken.interceptors.request.use(
     return error;
   }
 );
+const baseUpload = axios.create({
+  baseURL: api.ROOT_UPLOAD,
+  headers: {
+    "Content-Type": "application/x-www-form-urlencoded",
+  },
+});
 const baseApi = axios.create({
   baseURL: api.ROOT,
   headers: {
@@ -45,7 +49,7 @@ baseLogin.interceptors.response.use(
     throw error;
   }
 );
-// getInforCharacter
+// getInfo
 const baseGetInfoUser = axios.create({
   baseURL: api.ROOT,
   headers: {
@@ -70,8 +74,8 @@ baseGetInfoUser.interceptors.response.use(
   },
   function(error) {
     const originalRequest = error.response.config;
-    if (error.response.status !== 401) {
-      // console.log(error.response);
+    const { status } = error.response;
+    if (status !== 403) {
       return Promise.reject(error);
     }
     return refreshToken
@@ -88,4 +92,4 @@ baseGetInfoUser.interceptors.response.use(
       });
   }
 );
-export { baseApi, refreshToken, baseLogin, baseGetInfoUser };
+export { baseApi, baseUpload, refreshToken, baseLogin, baseGetInfoUser };

@@ -21,7 +21,7 @@
         :class="[menuActive(menu.name)?'menu-active':'menu']"
       >
         <a-icon :type="menu.icon" />
-        {{menu.name}}
+        {{menu.id===3?`${menu.name} (${feedbacks.totalElements})`:menu.name}}
       </div>
       <div class="menu" @click="logout">
         <a-icon type="logout" />Đăng xuất
@@ -33,6 +33,9 @@
         :userInfo="userInfo"
         :getInfo="getInfoUser"
         :username="username"
+        :feedbacks="feedbacks"
+        :setPageNumFeedback="setPageNumFeedback"
+        :refreshFeedbacks="refreshFeedbacks"
       ></component>
     </a-col>
   </a-row>
@@ -43,7 +46,7 @@ import Profile from "../components/account/Profile";
 import Info from "../components/account/Info";
 import Privacy from "../components/account/Privacy";
 import Feedback from "../components/account/feedback/Feedback";
-import { getInfoUser } from "../ultils/getData/user";
+import { getInfoUser, getFeedbacks } from "../ultils/getData/user";
 import { redirectPage } from "../ultils/checkToken";
 import { importImgIcon } from "../ultils/importImg";
 import cookieService from "../ultils/cookieService";
@@ -62,9 +65,22 @@ export default {
       username: "",
       avatar: "",
       userInfo: {},
+      feedbacks: {},
+      paramsFeedbacks: {
+        count: 5,
+        page: 0,
+        isRefresh: false,
+      },
     };
   },
   methods: {
+    setPageNumFeedback(e) {
+      this.paramsFeedbacks = { ...this.paramsFeedbacks, page: e };
+    },
+    refreshFeedbacks() {
+      const { isRefresh } = this.paramsFeedbacks;
+      this.paramsFeedbacks = { ...this.paramsFeedbacks, isRefresh: !isRefresh };
+    },
     getInfoUser() {
       getInfoUser(this);
     },
@@ -99,14 +115,18 @@ export default {
       }
     },
   },
-  components: {
-    // Profile,
-    // Info,
-    // Feedback,
+  watch: {
+    paramsFeedbacks: {
+      deep: true,
+      handler() {
+        getFeedbacks(this, this.paramsFeedbacks);
+      },
+    },
   },
   created() {
     if (redirectPage(this, "/login")) {
       getInfoUser(this);
+      getFeedbacks(this, this.paramsFeedbacks);
       const { username, avatar } = cookieService.getToken();
       (this.username = username), (this.avatar = avatar);
     }
