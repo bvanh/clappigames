@@ -19,6 +19,9 @@ const api = {
   UPDATE_USER: "/users/update",
   UPDATE_USER_PWD: "/users/update/password",
   REGISTER_USER: "/auth/register",
+  // feedbacks
+  FEEDBACKS:"/feedbacks",
+  FEEDBACK_POST:"/feedbacks/post",
   // token
   REFRESH_TOKEN: "/auth/token",
 };
