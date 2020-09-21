@@ -50,7 +50,10 @@ export default {
     return {
       isActiveMenu: 1,
       bn: "banner2.jpg",
-      news: null,
+      news: {
+        content: "",
+        createAt: "",
+      },
       menus: [
         {
           id: 1,
@@ -83,6 +86,7 @@ export default {
     },
     setActiveMenu(id) {
       this.isActiveMenu = id;
+      this.$router.push('/news')
     },
     printSubject(content) {
       if (content) {

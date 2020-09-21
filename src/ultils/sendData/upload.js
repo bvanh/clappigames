@@ -22,29 +22,33 @@ const sendFeedbacks = (
   content,
   img
 ) => {
-  const feedbacksIndex = {
-    topicType: topic,
-    game: game,
-    characterName: character,
-    bugDate: date,
-    title: title,
-    content: content,
-    imageUrl: img,
-  };
-  baseGetInfoUser
-    .post(api.SEND_FEEDBACKS, qs.stringify(feedbacksIndex))
-    .then((res) => {
-      if (res.status === 200) {
-        thisObj.$message.success(`Gửi feedback thành công!`);
-        thisObj.refreshFeedbacks();
-      }
-    })
-    .catch((err) => {
-      // console.log(err.response)
-      thisObj.$error({
-        title: err.response.status,
-        content: "Có lỗi xảy ra!",
+  if (title != "" || character != "" || date != "" || content != "") {
+    const feedbacksIndex = {
+      topicType: topic,
+      game: game,
+      characterName: character,
+      bugDate: date,
+      title: title,
+      content: content,
+      imageUrl: img,
+    };
+    baseGetInfoUser
+      .post(api.SEND_FEEDBACKS, qs.stringify(feedbacksIndex))
+      .then((res) => {
+        if (res.status === 200) {
+          thisObj.$message.success(`Gửi feedback thành công!`);
+          thisObj.refreshFeedbacks();
+        }
+      })
+      .catch((err) => {
+        // console.log(err.response)
+        thisObj.$error({
+          title: err.response.status,
+          content: "Có lỗi xảy ra!",
+        });
       });
-    });
+  } else {
+    thisObj.$message.error("Kiểm tra và điền đầy đủ thông tin!");
+  }
 };
 export { deleteImg, sendFeedbacks };

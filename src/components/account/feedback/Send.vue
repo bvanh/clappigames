@@ -94,7 +94,7 @@ export default {
   data() {
     return {
       isType: OVERVIEW,
-      apiUpload: api.ROOT_UPLOAD+api.UPLOAD,
+      apiUpload: api.ROOT_UPLOAD + api.UPLOAD,
       btnUpload: "",
       listErrs: listErrs,
       games: games,
