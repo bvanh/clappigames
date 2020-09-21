@@ -1,7 +1,7 @@
 const controlsAccount = {
   PROFILE: "Tài khoản",
   INFO: "Thông tin cá nhân",
-  FEEDBACK: "Phản hồi (1)",
+  FEEDBACK: "Phản hồi",
   PRIVACY: "Bảo mật",
   LOGOUT: "Đăng xuất",
 };

@@ -44,7 +44,7 @@ export default {
   h4 {
     margin: 0;
   }
-  img{
+  img {
     max-width: 100%;
   }
   div,
@@ -70,5 +70,9 @@ export default {
 .vue-scroll-button:hover {
   box-shadow: 1px 2px 4px 0px #000 !important;
   transition: 0s !important;
+}
+.ant-upload-list {
+  width: 100%;
+  margin-left: .5rem !important;
 }
 </style>
