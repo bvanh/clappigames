@@ -19,6 +19,7 @@
         :key="menu.id"
         @click="switchContent(menu.name)"
         :class="[menuActive(menu.name)?'menu-active':'menu']"
+        v-show="checkSocial(menu.id)"
       >
         <a-icon :type="menu.icon" />
         {{menu.id===3?`${menu.name} (${feedbacks.totalElements})`:menu.name}}
@@ -64,6 +65,7 @@ export default {
       ],
       username: "",
       avatar: "",
+      noSocial: null,
       userInfo: {},
       feedbacks: {},
       paramsFeedbacks: {
@@ -74,6 +76,12 @@ export default {
     };
   },
   methods: {
+    checkSocial(menu) {
+      if (menu === 6) {
+        return this.noSocial;
+      }
+      return true;
+    },
     setPageNumFeedback(e) {
       this.paramsFeedbacks = { ...this.paramsFeedbacks, page: e };
     },
@@ -127,8 +135,9 @@ export default {
     if (redirectPage(this, "/login")) {
       getInfoUser(this);
       getFeedbacks(this, this.paramsFeedbacks);
-      const { username, avatar } = cookieService.getToken();
+      const { username, avatar, noSocial } = cookieService.getToken();
       (this.username = username), (this.avatar = avatar);
+      this.noSocial = noSocial;
     }
   },
 };

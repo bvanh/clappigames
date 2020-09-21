@@ -13,7 +13,6 @@
       >Quay lại</a-button>
     </div>
     <div class="username">
-      <!-- <img :src="importIcon('avatar.png')" /> -->
       <h3>{{username}}</h3>
       <span>{{getDate(detail.createAt)}}</span>
     </div>
@@ -31,18 +30,16 @@
     </div>
     <div class="detail" style="align-items:end">
       <h3>Tệp đính kèm :</h3>
-      <img :src="detail.imageUrl" style="width:60px"/>
+      <img :src="detail.imageUrl" style="width:60px" />
     </div>
     <div class="username" style="border-top:1px solid #ece2e2;padding-top:1rem">
       <img :src="importIcon('icon_clappi.png')" />
       <h3>Clappigames</h3>
-      <span>2020/20/20</span>
+      <span>{{getDate(new Date())}}</span>
     </div>
     <div class="detail detail-content">
       <h3>Trả lời :</h3>
-      <span
-        style="color:red"
-      >Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</span>
+      <a href="https://www.facebook.com/clappigames" target="_blank">Liên hệ phản hồi.</a>
     </div>
   </div>
 </template>
@@ -61,7 +58,7 @@ export default {
   data() {
     return {
       isType: OVERVIEW,
-      username:"",  
+      username: "",
       detail: {
         bugDate: "",
         characterName: "",

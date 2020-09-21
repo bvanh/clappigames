@@ -1,7 +1,7 @@
 const api = {
   ROOT: "https://test.api.cubegame.vn",
   // upload img feedbacks
-  ROOT_UPLOAD: "http://localhost:3002",
+  ROOT_UPLOAD: "https://api.clappi.lussom.vn",
   UPLOAD: "/upload",
   DELETE: "/delete",
   // login

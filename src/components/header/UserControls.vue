@@ -12,6 +12,7 @@
           :key="menu.id"
           class="menu-item"
           @click="setMenuControls(menu.menu)"
+          v-show="checkSocial(menu.id)"
         >
           <a-icon :type="menu.icon"></a-icon>
           <router-link :to="menu.link">
@@ -39,6 +40,7 @@ export default {
   data() {
     return {
       userInfo: {},
+      noSocial: null,
       menus: [
         {
           id: 1,
@@ -72,6 +74,12 @@ export default {
     };
   },
   methods: {
+    checkSocial(menu) {
+      if (menu === 3) {
+        return this.noSocial;
+      }
+      return true;
+    },
     logout() {
       this.$store.dispatch("logout");
       cookieService.resetToken();
@@ -86,6 +94,8 @@ export default {
   },
   created() {
     getInfoUser(this);
+    const { noSocial } = cookieService.getToken();
+    this.noSocial = noSocial;
   },
 };
 </script>

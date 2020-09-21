@@ -9,7 +9,10 @@ const login = (thisObj, path, params, userIndex) => {
     .then((response) => {
       // console.log(response);
       const { data } = response;
-      cookieService.setToken({ ...data, ...userIndex }, data.accessToken);
+      cookieService.setToken(
+        { ...data, ...userIndex, noSocial: true },
+        data.accessToken
+      );
       thisObj.$store.dispatch("login");
       return response;
     })
@@ -30,16 +33,19 @@ const login = (thisObj, path, params, userIndex) => {
     });
 };
 const socialLogin = (thisObj, path, token, socialIndex) => {
- return baseLogin
+  return baseLogin
     .post(path, qs.stringify({ accessToken: token, gameId: gameId }))
     .then((res) => {
       const { data } = res;
-      cookieService.setToken({ ...data, ...socialIndex }, data.accessToken);
+      cookieService.setToken(
+        { ...data, ...socialIndex, noSocial: false },
+        data.accessToken
+      );
       thisObj.$store.dispatch("login");
       return res;
     })
     .catch((err) => {
-      console.log(thisObj)
+      console.log(thisObj);
       console.log(err.response);
     });
 };

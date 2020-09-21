@@ -90,8 +90,10 @@ export default {
       this.dateOfIssue = dateString;
     },
     formatDate(date) {
+      console.log(date);
       switch (date) {
         case "":
+        case null:
           return "";
         default:
           return moment(date, this.dateFormat);

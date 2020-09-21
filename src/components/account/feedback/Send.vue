@@ -64,7 +64,7 @@
       <div>
         <a-upload
           name="file"
-          action="http://localhost:3002/upload"
+          :action="apiUpload"
           @change="handleChangeFile"
           :remove="handRemoveFile"
           class="upload"
@@ -84,6 +84,7 @@ import moment from "moment";
 import { controlsFeedback } from "../services";
 import { deleteImg, sendFeedbacks } from "../../../ultils/sendData/upload";
 import { listErrs, games } from "./services";
+import { api } from "../../../api/apiUrl";
 const { OVERVIEW } = controlsFeedback;
 export default {
   props: {
@@ -93,6 +94,7 @@ export default {
   data() {
     return {
       isType: OVERVIEW,
+      apiUpload: api.ROOT_UPLOAD+api.UPLOAD,
       btnUpload: "",
       listErrs: listErrs,
       games: games,
@@ -156,10 +158,13 @@ export default {
       }
     },
     handRemoveFile(info) {
-      const { public_id } = info.response;
-      deleteImg(this, public_id);
-      this.btnUpload = "";
-      this.imageUrl = "";
+      console.log(info);
+      if (info.response) {
+        const { public_id } = info?.response;
+        deleteImg(this, public_id);
+        this.btnUpload = "";
+        this.imageUrl = "";
+      }
     },
   },
 };
