@@ -81,7 +81,7 @@ baseGetInfoUser.interceptors.response.use(
     return refreshToken
       .post(api.REFRESH_TOKEN)
       .then((response) => {
-        console.log(response);
+        // console.log(response);
         const { accessToken } = response.data;
         cookieService.setAccessToken(accessToken);
         originalRequest.headers["Authorization"] = "Bearer " + accessToken;
