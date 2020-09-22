@@ -25,7 +25,7 @@
           />
         </router-link>
         <h3>
-          <router-link :to="`/games/${game.shortName}`">{{game.name}}</router-link>
+          <router-link :to="`/games/${game.shortName}`">{{game.fullName}}</router-link>
         </h3>
         <div>
           {{game.category}}

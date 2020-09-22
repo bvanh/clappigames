@@ -12,7 +12,12 @@
       </a-col>
     </a-row>
     <a-col class="menus">
-      <div v-for="menu of controls" :key="menu.id" @click="setMenuControls(menu.menu)">
+      <div
+        v-for="menu of controls"
+        :key="menu.id"
+        @click="setMenuControls(menu.menu)"
+        v-show="noSocial?menu.id!==4?true:false:menu.id!==3?true:false"
+      >
         <a-icon :type="menu.icon"></a-icon>
         <router-link :to="menu.link">
           <span>{{menu.name}}</span>
@@ -30,7 +35,7 @@ import { importImgForm } from "../../../../ultils/importImg";
 import { getInfoUser } from "../../../../ultils/getData/user";
 import cookieService from "../../../../ultils/cookieService";
 import { controlsAccount } from "../../../account/services";
-const { PROFILE, INFO, PRIVACY } = controlsAccount;
+const { PROFILE, INFO, PRIVACY, FEEDBACK } = controlsAccount;
 export default {
   name: "Form",
   props: {
@@ -60,11 +65,25 @@ export default {
           name: "Bảo mật",
           menu: PRIVACY,
         },
+        {
+          id: 4,
+          icon: "gift",
+          link: "/account",
+          name: "Phản hồi",
+          menu: FEEDBACK,
+        },
       ],
       userInfo: {},
+      noSocial: null,
     };
   },
   methods: {
+    checkSocial(menu) {
+      if (menu === 3 && this.noSocial === false) {
+        return true;
+      }
+      return true;
+    },
     importImg(url) {
       return importImgForm[url];
     },
@@ -86,6 +105,8 @@ export default {
   },
   created() {
     getInfoUser(this);
+    const { noSocial } = cookieService.getToken();
+    this.noSocial = noSocial;
   },
 };
 </script>

@@ -90,7 +90,7 @@ export default {
       this.dateOfIssue = dateString;
     },
     formatDate(date) {
-      console.log(date);
+      // console.log(date);
       switch (date) {
         case "":
         case null:

@@ -78,7 +78,7 @@ export default {
     },
     getGameDetail() {
       const gameDetail = this.$store.getters.gameDetail(this.$route.params.id);
-      console.log(gameDetail);
+      // console.log(gameDetail);
       return gameDetail[0];
     },
     getBanners() {

@@ -25,7 +25,7 @@ const getFeedbacks = (thisObj, paramsFeedbacks) => {
     .get(GET_FEEDBACKS, { params })
 
     .then((response) => {
-      console.log(response);
+      // console.log(response);
       thisObj.feedbacks = response.data;
       return response;
     })
@@ -37,7 +37,7 @@ const getFeedbackDetail = (thisObj, detailId) => {
   baseGetInfoUser
     .get(GET_FEEDBACKS + detailId)
     .then((res) => {
-      console.log(res);
+      // console.log(res);
       thisObj.detail = res.data;
     })
     .catch((err) => {
