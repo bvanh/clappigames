@@ -31,7 +31,7 @@
           <a-col
             :span="colNews[0]"
             class="thumbnail"
-            :style="{backgroundImage:`url(${news.image})`}"
+            :style="{ 'background-image': 'url(' + news.image + ')' }"
           ></a-col>
           <a-col :span="colNews[1]" class="news-info">
             <h4>
