@@ -17,6 +17,7 @@ const getNewsDetail = (thisObj, path) => {
     .get(path)
     .then((response) => {
       thisObj.news = response.data;
+      // console.log(response.data)
     })
     .catch((e) => {
       console.log(e.response.data);

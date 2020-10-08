@@ -1,34 +1,41 @@
 <template>
   <a-row class="frame-1" :gutter="40">
-    <a-col :span="24" :lg="{span:16}" class="section-left">
+    <a-col :span="24" :lg="{ span: 16 }" class="section-left">
       <div class="news-container page-news">
         <div class="title">
           <div>
             <a
-              :class="`title-game ${menu.id===isActiveMenu?'menu-active2':''} title-${menu.subClass}`"
+              :class="`title-game ${
+                menu.id === isActiveMenu ? 'menu-active2' : ''
+              } title-${menu.subClass}`"
               v-for="menu of menus"
               :key="menu.id"
               @click="setActiveMenu(menu.id)"
             >
-              <div :class="`${menu.id===isActiveMenu?'rectangle':''} ${menu.subClass}`"></div>
+              <div
+                :class="`${menu.id === isActiveMenu ? 'rectangle' : ''} ${
+                  menu.subClass
+                }`"
+              ></div>
               <img :src="importIcon(menu.icon1)" />
-              {{menu.name}}
+              {{ menu.name }}
               <img :src="importIcon(menu.icon2)" class="dots" />
             </a>
           </div>
-          <h3 class="title-news">{{printSubject(news)}}</h3>
+          <h3 class="title-news">{{ printSubject(news) }}</h3>
         </div>
         <div class="content">
-          <h3>{{printSubject(news)}}</h3>
+          <h3>{{ printSubject(news) }}</h3>
           <p>
             <a-icon type="clock-circle" />
-            {{formatDate(news.createAt)}}
+            {{ formatDate(news.createAt) }}
           </p>
-          <vue-markdown>{{news.content}}</vue-markdown>
+          <!-- <vue-markdown>{{news.content}}</vue-markdown> -->
+          <p v-html="news.content" style="color: black"></p>
         </div>
       </div>
     </a-col>
-    <a-col :span="8" class="section-right" style="padding:0">
+    <a-col :span="8" class="section-right" style="padding: 0">
       <Category :games="getGames" />
       <Banner :bn="getBanners[1]" />
       <Fb />
@@ -39,7 +46,7 @@
 import Category from "../homepage/section2/section-right/Category";
 import Banner from "../homepage/Banner";
 import Fb from "../homepage/Fb";
-import VueMarkdown from "vue-markdown";
+// import VueMarkdown from "vue-markdown";
 import { formatDate } from "../../ultils/format";
 import { importImgIcon } from "../../ultils/importImg";
 import { getNewsDetail } from "../../ultils/getData/news";
@@ -86,7 +93,7 @@ export default {
     },
     setActiveMenu(id) {
       this.isActiveMenu = id;
-      this.$router.push('/news')
+      this.$router.push("/news");
     },
     printSubject(content) {
       if (content) {
@@ -104,7 +111,7 @@ export default {
     Category,
     Banner,
     Fb,
-    VueMarkdown,
+    // VueMarkdown,
   },
 };
 </script>
