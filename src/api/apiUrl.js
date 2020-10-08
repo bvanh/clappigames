@@ -1,5 +1,5 @@
 const api = {
-  ROOT: "https://test.api.cubegame.vn",
+  ROOT: "https://api.cubegame.vn",
   // upload img feedbacks
   ROOT_UPLOAD: "https://api.clappi.lussom.vn",
   UPLOAD: "/upload",
@@ -24,13 +24,13 @@ const api = {
   UPDATE_USER_PWD: "/users/update/password",
   REGISTER_USER: "/auth/register",
   // feedbacks
-  FEEDBACKS:"/feedbacks",
-  FEEDBACK_POST:"/feedbacks/post",
+  FEEDBACKS: "/feedbacks",
+  FEEDBACK_POST: "/feedbacks/post",
   // token
   REFRESH_TOKEN: "/auth/token",
   // feedbacks
   SEND_FEEDBACKS: "/feedbacks/post",
-  GET_FEEDBACKS:"/feedbacks",
+  GET_FEEDBACKS: "/feedbacks",
 };
 const type = {
   news: {
