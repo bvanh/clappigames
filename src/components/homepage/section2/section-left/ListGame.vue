@@ -12,26 +12,29 @@
     </div>
     <a-row :gutter="32" type="flex">
       <a-col
-        :sm="{span:span}"
-        :xs="{span:12}"
-        v-for="game of games"
+        :sm="{ span: span }"
+        :xs="{ span: 12 }"
+        v-for="(game, index) of games"
         :key="game.id"
         class="game-info"
+        v-show="index !== 2"
       >
-        <router-link :to="`${game.partnerId===null?'':`/games/${game.shortName}`}`"  :class="[game.partnerId===null?'':'game-thumbnail']">
-          <img
-            :src="game.gameImg"
-            width="100%"
-          />
+        <router-link
+          :to="`${game.partnerId === null ? '' : `/games/${game.shortName}`}`"
+          class="game-thumbnail"
+        >
+          <img :src="game.gameImg" width="100%" />
         </router-link>
         <h3>
-          <router-link :to="`/games/${game.shortName}`">{{game.fullName}}</router-link>
+          <router-link :to="`/games/${game.shortName}`">{{
+            game.fullName
+          }}</router-link>
         </h3>
         <div>
-          {{game.category}}
+          {{ game.category }}
           <span>
             <img :src="importIcon('icon_people.png')" />
-            {{game.content.length}}
+            {{ game.content.length }}
           </span>
         </div>
       </a-col>
@@ -58,7 +61,7 @@ export default {
     },
   },
   created() {
-    // console.log(this.games);
+    console.log(this.games);
   },
 };
 </script>
