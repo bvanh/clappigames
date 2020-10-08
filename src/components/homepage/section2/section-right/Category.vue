@@ -2,26 +2,35 @@
   <div class="game-container">
     <div class="title">
       <a
-        :class="[isGamesHot?'title-game title-game-active':'title-game']"
+        :class="[isGamesHot ? 'title-game title-game-active' : 'title-game']"
         @click="switchTypeGames"
-      >GAME HOT</a>
+        >GAME HOT</a
+      >
       <img :src="importIcon('icon_dots.png')" />
       <a
         class="title-game"
-        :class="[isGamesHot?'title-game':'title-game title-game-active']"
+        :class="[isGamesHot ? 'title-game' : 'title-game title-game-active']"
         @click="switchTypeGames"
-      >GAME NEW</a>
+        >GAME NEW</a
+      >
     </div>
     <a-row :gutter="24" type="flex">
-      <a-col :span="8" v-for="game of gamesHot()" :key="game.id" class="game-info">
-        <router-link :to="`/games/${game.shortName}`">
+      <a-col
+        :span="8"
+        v-for="(game, index) of gamesHot()"
+        :key="game.id"
+        class="game-info"
+        v-show="index !== 2"
+      >
+        <router-link :to="`/games/${game.shortName}`" style="cursor: pointer !important;">
           <img :src="game.avatar" class="game-avatar" />
+
+          <h3 class="game-fullname">{{ game.fullName }}</h3>
+          <div>{{ game.category }}</div>
         </router-link>
-        <h3 class="game-fullname">{{game.fullName}}</h3>
-        <div>{{game.category}}</div>
       </a-col>
     </a-row>
-    <router-link to="/games" style="color:black">
+    <router-link to="/games" style="color: black">
       <button class="btn-read-more">Xem thêm</button>
     </router-link>
   </div>
