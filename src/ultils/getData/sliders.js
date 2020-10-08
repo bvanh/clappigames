@@ -5,7 +5,7 @@ const getSliders = (thisObj, path, params) => {
   baseApi
     .get(path, { params })
     .then((response) => {
-      thisObj.sliders = response.data;
+      thisObj.sliders = response.data.reverse();
       // console.log(response);
     })
     .catch((e) => {
