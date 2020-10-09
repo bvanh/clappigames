@@ -19,10 +19,7 @@
         class="game-info"
         v-show="index !== 2"
       >
-        <router-link
-          :to="`${game.partnerId === null ? '' : `/games/${game.shortName}`}`"
-          class="game-thumbnail"
-        >
+        <router-link :to="`/games/${game.shortName}`" class="game-thumbnail">
           <img :src="game.gameImg" width="100%" />
         </router-link>
         <h3>
