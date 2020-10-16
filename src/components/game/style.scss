@@ -15,7 +15,7 @@
       span {
         @extend .div-static;
         position: absolute;
-        bottom: 26px;
+        bottom: 30px;
         // width: 9rem;
         @include mobile-xs {
           bottom: 44px;

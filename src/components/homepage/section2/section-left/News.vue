@@ -3,26 +3,36 @@
     <div class="title">
       <div>
         <a
-          :class="`title-game ${menu.id===isActiveMenu?'menu-active':''} title-${menu.subClass}`"
+          :class="`title-game ${
+            menu.id === isActiveMenu ? 'menu-active' : ''
+          } title-${menu.subClass}`"
           v-for="menu of menus"
           :key="menu.id"
-          @click="setActiveMenu(menu.id,menu.subClass)"
+          @click="setActiveMenu(menu.id, menu.subClass)"
         >
-          <div :class="`${menu.id===isActiveMenu?'rectangle':''} ${menu.subClass}`"></div>
+          <div
+            :class="`${menu.id === isActiveMenu ? 'rectangle' : ''} ${
+              menu.subClass
+            }`"
+          ></div>
           <img :src="importIcon(menu.icon1)" />
-          {{menu.name}}
+          {{ menu.name }}
           <img :src="importIcon(menu.icon2)" class="dots" />
         </a>
       </div>
-      <router-link to="/news" class="title-see-all" v-show="isPage!=='page-news'">
+      <router-link
+        to="/news"
+        class="title-see-all"
+        v-show="isPage !== 'page-news'"
+      >
         Xem thêm
         <a-icon type="forward" />
       </router-link>
     </div>
     <a-row type="flex" :gutter="24" class="li-news">
       <a-col
-        :sm="{span:spanNews}"
-        :xs="{span:24}"
+        :sm="{ span: spanNews }"
+        :xs="{ span: 24 }"
         v-for="news of listNews"
         :key="news.id"
         class="news"
@@ -31,15 +41,17 @@
           <a-col
             :span="colNews[0]"
             class="thumbnail"
-            :style="{ 'background-image': 'url(' + news.image + ')' }"
+            :style="getThumbnail(news.image)"
           ></a-col>
           <a-col :span="colNews[1]" class="news-info">
             <h4>
-              <router-link :to="`/news/detail/${news.newsId}`">{{news.subject}}</router-link>
+              <router-link :to="`/news/detail/${news.newsId}`">{{
+                news.subject
+              }}</router-link>
             </h4>
             <div class="news-footer">
               <a-icon type="clock-circle" />
-              <span>{{formatDate(news.createAt)}}</span>
+              <span>{{ formatDate(news.createAt) }}</span>
             </div>
           </a-col>
         </a-row>
@@ -60,6 +72,7 @@ import { formatDate } from "../../../../ultils/format";
 import { getNews } from "../../../../ultils/getData/news";
 import { api } from "../../../../api/apiUrl";
 const { NEWS_ALL } = api;
+const regexSpace = /\s/gi;
 export default {
   name: "ListGame",
   props: {
@@ -120,6 +133,10 @@ export default {
     },
     getPageNumber(val) {
       this.params = { ...this.params, page: val - 1 };
+    },
+    getThumbnail: (img) => {
+      // console.log(img.replace(regexSpace, "%20"));
+      return `background-image: url(${img.replace(regexSpace, "%20")})`;
     },
     formatDate: formatDate,
   },
