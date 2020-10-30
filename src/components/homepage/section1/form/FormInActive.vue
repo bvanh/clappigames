@@ -118,7 +118,7 @@ export default {
         const userIndex = {
           username: username,
           avatar:
-            "http://5002047-s3user.cloudstorage.com.vn/clappigames/lqmt/CPlcHdroW-avatar.png",
+            "https://5002047-s3user.storebox.vn/clappigames/lqmt/CPlcHdroW-avatar.png",
         };
         if (validateLogin(this, username, password)) {
           login(this, LOGIN, values, userIndex);

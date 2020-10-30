@@ -5,7 +5,7 @@ const getNews = (thisObj, path, params) => {
     .get(path, { params })
     .then((response) => {
       thisObj.listNews = response.data.content;
-      thisObj.totalNews=response.data.totalElements;
+      thisObj.totalNews = response.data.totalElements;
       // console.log(response);
     })
     .catch((e) => {
