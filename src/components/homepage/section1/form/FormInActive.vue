@@ -101,11 +101,12 @@ export default {
       return false;
     },
     onSuccessGg(ggUserIndex) {
+     // console.log(ggUserIndex)
       const { id_token } = ggUserIndex.wc;
-      const { $t, iK } = ggUserIndex.rt;
+      const { $t, dK } = ggUserIndex.tt;
       const socialIndex = {
         username: $t,
-        avatar: iK,
+        avatar: dK,
       };
       socialLogin(this,LOGIN_GG, id_token, socialIndex);
       // console.log(ggUserIndex);
