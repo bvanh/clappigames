@@ -1,5 +1,5 @@
 const api = {
-  ROOT: "https://api.cubegame.vn",
+  ROOT: "https://test.api.cubegame.vn",
   // upload img feedbacks
   ROOT_UPLOAD: "https://api.clappi.lussom.vn",
   UPLOAD: "/upload",
