@@ -8,7 +8,11 @@
           placeholder="Tài khoản Clappigames"
           @mousedown="resetStatus"
         >
-          <a-icon slot="prefix" type="user" style="color: rgba(0,0,0,.25)" />
+          <a-icon
+            slot="prefix"
+            type="user"
+            style="color: rgba(0, 0, 0, 0.25)"
+          />
         </a-input>
       </a-form-item>
       <a-form-item :validate-status="statusPwd.val" :help="statusPwd.help">
@@ -17,13 +21,19 @@
           placeholder="Mật khẩu"
           @mousedown="resetStatus"
         >
-          <a-icon slot="prefix" type="lock" style="color: rgba(0,0,0,.25)" />
+          <a-icon
+            slot="prefix"
+            type="lock"
+            style="color: rgba(0, 0, 0, 0.25)"
+          />
         </a-input-password>
       </a-form-item>
       <a-form-item class="form-control">
         <a class="login-form-forgot" href>Quên mật khẩu?</a>
-        <a-button type="primary" html-type="submit" class="login-form-button">ĐĂNG NHẬP</a-button>
-        <p style="color:black">
+        <a-button type="primary" html-type="submit" class="login-form-button"
+          >ĐĂNG NHẬP</a-button
+        >
+        <p style="color: black">
           Chưa có tài khoản?
           <router-link to="register">Đăng ký ngay!</router-link>
         </p>
@@ -32,7 +42,11 @@
     <hr />
     <p class="text-or">Hoặc</p>
     <div class="icon-social">
-      <a-icon type="facebook" class="icon-social-fb" @click="logInWithFacebook" />
+      <a-icon
+        type="facebook"
+        class="icon-social-fb"
+        @click="logInWithFacebook"
+      />
       <!-- <button class="button" @click="logInWithFacebook">Login with Facebook</button> -->
       <GoogleLogin :params="params" :onSuccess="onSuccessGg" class="btn-gg">
         <a-icon type="google-plus" class="icon-social-gg" />
@@ -78,7 +92,7 @@ export default {
     async logInWithFacebook() {
       this.fb.login((res) => {
         if (res.authResponse) {
-          console.log(res);
+          //console.log(res);
           const { accessToken } = res.authResponse;
           this.fb.api(
             "/me",
@@ -101,14 +115,14 @@ export default {
       return false;
     },
     onSuccessGg(ggUserIndex) {
-     // console.log(ggUserIndex)
+      // console.log(ggUserIndex)
       const { id_token } = ggUserIndex.wc;
       const { $t, dK } = ggUserIndex.tt;
       const socialIndex = {
         username: $t,
         avatar: dK,
       };
-      socialLogin(this,LOGIN_GG, id_token, socialIndex);
+      socialLogin(this, LOGIN_GG, id_token, socialIndex);
       // console.log(ggUserIndex);
     },
     onFailure() {},
