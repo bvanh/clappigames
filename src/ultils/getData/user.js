@@ -1,8 +1,14 @@
-import { baseGetInfoUser } from "../../api/baseApi";
+import { baseGetInfoUser, baseLogin } from "../../api/baseApi";
 import { api } from "../../api/apiUrl";
 import qs from "qs";
 // import cookieService from "../cookieService";
-const { UPDATE_USER, GET_INFO, UPDATE_USER_PWD, GET_FEEDBACKS } = api;
+const {
+  UPDATE_USER,
+  GET_INFO,
+  UPDATE_USER_PWD,
+  GET_FEEDBACKS,
+  RECOVERY_PWD,
+} = api;
 const getInfoUser = (thisObj) => {
   //   const token = cookieService.getToken();
   baseGetInfoUser
@@ -102,10 +108,38 @@ const updatePassword = (thisObj, oldPass, newPass) => {
       return;
     });
 };
+const recoveryPassword = (thisObj, email) => {
+  baseLogin
+    .post(RECOVERY_PWD, qs.stringify({ email: email }))
+    .then((res) => {
+      //const { message } = r.response.data;
+      console.log(res);
+      // thisObj.getInfo();
+      // return response;
+    })
+    .catch((err) => {
+      console.log(err.response.data);
+      const { status, message, title } = err.response.data;
+      const newStatus = {
+        status: title.toLowerCase(),
+        help: message,
+      };
+      if (status === 200) {
+        thisObj.mailIndex = {
+          status: "success",
+          help: "Gửi thông tin thành công, kiểm tra mail để nhận mật khẩu mới",
+        };
+        return;
+      }
+      thisObj.mailIndex = newStatus;
+      return;
+    });
+};
 export {
   getInfoUser,
   updateInfoUser,
   updatePassword,
   getFeedbacks,
   getFeedbackDetail,
+  recoveryPassword,
 };

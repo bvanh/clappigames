@@ -6,6 +6,7 @@ import GameDetail from "../views/GameDetail.vue";
 import News from "../views/News.vue";
 import NewsDetail from "../views/NewsDetail.vue";
 import Login from "../views/Login.vue";
+import RecoPwd from '@/components/logAndsign/RecoPwd';
 import Signup from "../views/Signup.vue";
 import Account from "../views/Account";
 import Terms from "../views/Terms.vue";
@@ -47,6 +48,11 @@ const routes = [
     path: "/register",
     name: "Signup",
     component: Signup,
+  },
+  {
+    path: "/recovery/password",
+    name: "reco",
+    component: RecoPwd,
   },
   {
     path: "/account",

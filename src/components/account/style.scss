@@ -178,6 +178,14 @@
       border: 0;
       height: 2rem;
       width: 7rem;
+      cursor: pointer;
+    }
+    .status-reco{
+    //  margin-top: .5rem !important;
+    }
+    .btn-submit-reco{
+      @extend .btn-submit;
+      margin-top: .5rem;
     }
     .btn-cancel {
       @extend .btn-submit;

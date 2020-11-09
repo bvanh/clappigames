@@ -29,7 +29,9 @@
         </a-input-password>
       </a-form-item>
       <a-form-item class="form-control">
-        <a class="login-form-forgot" href>Quên mật khẩu?</a>
+        <router-link to="/recovery/password" class="login-form-forgot" href
+          >Quên mật khẩu?</router-link
+        >
         <a-button type="primary" html-type="submit" class="login-form-button"
           >ĐĂNG NHẬP</a-button
         >

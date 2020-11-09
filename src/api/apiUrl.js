@@ -22,6 +22,7 @@ const api = {
   GET_INFO: "/users/info",
   UPDATE_USER: "/users/update",
   UPDATE_USER_PWD: "/users/update/password",
+  RECOVERY_PWD: "/auth/recovery/password",
   REGISTER_USER: "/auth/register",
   // feedbacks
   FEEDBACKS: "/feedbacks",
