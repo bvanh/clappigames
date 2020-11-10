@@ -1,7 +1,7 @@
 import { baseGetInfoUser, baseLogin } from "../../api/baseApi";
 import { api } from "../../api/apiUrl";
 import qs from "qs";
-// import cookieService from "../cookieService";
+import cookieService from "../cookieService";
 const {
   UPDATE_USER,
   GET_INFO,
@@ -91,6 +91,17 @@ const updatePassword = (thisObj, oldPass, newPass) => {
     .post(UPDATE_USER_PWD, qs.stringify(userPwd))
     .then((response) => {
       thisObj.getInfo();
+      const { status } = response;
+      if (status === 200)
+        thisObj.$success({
+          title: "Cập nhật mật khẩu thành công!",
+          okText: "Logout",
+          onOk() {
+            thisObj.$store.dispatch("logout");
+            thisObj.$router.push("/");
+            cookieService.resetToken();
+          },
+        });
       return response;
     })
     .catch((err) => {
