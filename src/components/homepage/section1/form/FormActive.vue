@@ -1,14 +1,18 @@
 <template>
-  <a-col :span="24" :lg="{span:8}" class="form-container form-login login-active">
+  <a-col
+    :span="24"
+    :lg="{ span: 8 }"
+    class="form-container form-login login-active"
+  >
     <!-- <h3 :class="`${log.id}-title`">df</h3> -->
     <a-row class="user-info">
       <a-col :span="8" class="avatar">
         <img :src="getAvatar()" width="100%" />
       </a-col>
       <a-col :span="16" class="info">
-        <h3>{{getUserIndex()}}</h3>
-        <span class="user-id">UserID: {{userInfo.fakeId}}</span>
-        <p class="user-id">Coin: {{userInfo.coin}}</p>
+        <h3>{{ getUserIndex() }}</h3>
+        <span class="user-id">UserID: {{ userInfo.fakeId }}</span>
+        <p class="user-id">Coin: {{ userInfo.coin }}</p>
       </a-col>
     </a-row>
     <a-col class="menus">
@@ -16,11 +20,19 @@
         v-for="menu of controls"
         :key="menu.id"
         @click="setMenuControls(menu.menu)"
-        v-show="noSocial?menu.id!==4?true:false:menu.id!==3?true:false"
+        v-show="
+          noSocial
+            ? menu.id !== 4
+              ? true
+              : false
+            : menu.id !== 3
+            ? true
+            : false
+        "
       >
         <a-icon :type="menu.icon"></a-icon>
         <router-link :to="menu.link">
-          <span>{{menu.name}}</span>
+          <span>{{ menu.name }}</span>
         </router-link>
       </div>
       <!-- <div @click="logout">

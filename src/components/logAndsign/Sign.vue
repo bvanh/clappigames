@@ -4,12 +4,15 @@
       <img :src="importImg('signup.png')" />
     </a-col>
     <a-col :span="24" :lg="{ span: 8 }" class="form-container form-login">
-      <h3 class="form-login-title">ĐĂNG KÝ TÀI KHOẢN</h3>
+      <h3 class="form-login-title">
+        ĐĂNG KÝ {{ isRegisSuccess ? "THÀNH CÔNG" : "TÀI KHOẢN" }}
+      </h3>
       <a-form
         id="normal-login"
         :form="form"
         class="form"
         @submit="handleSubmit"
+        v-if="!isRegisSuccess"
       >
         <a-form-item :validate-status="statusUser.val" :help="statusUser.help">
           <a-input
@@ -57,7 +60,7 @@
         </a-form-item>
         <a-form-item :validate-status="statusMail.val" :help="statusMail.help">
           <a-input
-            v-decorator="['mail']"
+            v-decorator="['email']"
             type="mail"
             placeholder="Email"
             @mousedown="resetStatus"
@@ -89,12 +92,24 @@
           </p>
         </a-form-item>
       </a-form>
-      <hr />
+      <a-form
+        id="normal-login"
+        class="form"
+        style="margin-top: 1.5rem"
+        v-if="isRegisSuccess"
+      >
+        <a-form-item class="form-control">
+          <a-button type="primary" html-type="submit" class="login-form-button">
+            <router-link to="/" @click="resetStatus">VỀ TRANG CHỦ</router-link>
+          </a-button>
+        </a-form-item>
+      </a-form>
+      <!-- <hr />
       <p class="text-or">Hoặc</p>
       <div class="icon-social">
         <a-icon type="facebook" class="icon-social-fb" />
         <a-icon type="google-plus" class="icon-social-gg" />
-      </div>
+      </div> -->
     </a-col>
   </a-row>
 </template>
@@ -103,6 +118,7 @@ import { importImg } from "../../ultils/importImg";
 import { statusIpDefault } from "../../ultils/valDefault";
 import { validateRegister } from "../../ultils/validate";
 import { register } from "../../ultils/register";
+import cookieService from "@/ultils/cookieService";
 export default {
   data() {
     return {
@@ -110,6 +126,7 @@ export default {
         id: "form-login",
         title: "ĐĂNG NHẬP TÀI KHOẢN",
       },
+      isRegisSuccess: false,
       isAgreePrivacy: true,
       statusUser: { ...statusIpDefault },
       statusPwd: { ...statusIpDefault },
@@ -127,8 +144,8 @@ export default {
     handleSubmit(e) {
       e.preventDefault();
       this.form.validateFields((err, values) => {
-        const { username, password, mail, mobile } = values;
-        if (validateRegister(this, username, password, mobile, mail)) {
+        const { username, password, email, mobile } = values;
+        if (validateRegister(this, username, password, mobile, email)) {
           register(this, values, values.username);
         }
       });
@@ -141,7 +158,16 @@ export default {
       this.statusPwd = { ...statusIpDefault };
       this.statusPhone = { ...statusIpDefault };
       this.statusMail = { ...statusIpDefault };
+      this.isRegisSuccess = false;
     },
+  },
+  beforeMount() {
+    //console.log(cookieService.getToken());
+    const { username } = cookieService.getToken();
+    if (username) this.$router.push("login");
+  },
+  beforeDestroy() {
+    this.resetStatus();
   },
 };
 </script>

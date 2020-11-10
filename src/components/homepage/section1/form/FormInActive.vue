@@ -61,7 +61,11 @@ import { importImgForm } from "../../../../ultils/importImg";
 import { login, socialLogin } from "../../../../ultils/login";
 import { api } from "../../../../api/apiUrl";
 import { validateLogin } from "../../../../ultils/validate";
-import { statusIpDefault, socialId } from "../../../../ultils/valDefault";
+import {
+  statusIpDefault,
+  socialId,
+  avatar,
+} from "../../../../ultils/valDefault";
 import GoogleLogin from "vue-google-login";
 const { LOGIN, LOGIN_FB, LOGIN_GG } = api;
 export default {
@@ -134,8 +138,7 @@ export default {
         const { username, password } = values;
         const userIndex = {
           username: username,
-          avatar:
-            "https://5002047-s3user.storebox.vn/clappigames/lqmt/CPlcHdroW-avatar.png",
+          avatar: avatar,
         };
         if (validateLogin(this, username, password)) {
           login(this, LOGIN, values, userIndex);
